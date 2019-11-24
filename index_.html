@@ -1,0 +1,321 @@
+﻿<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <!--<script async src="https://www.googletagmanager.com/gtag/js?id=UA-47317436-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-47317436-1');
+    </script>-->
+    <title>STUDIO TANYA RIJEKA | Studio za masažu</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="STUDIO TANYA RIJEKA | Studio za masažu i njegu tijela">
+    <meta name="author" content="IG PROG, vl. Igor Gašparović">
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Studio Tanya" />
+    <meta property="og:url" content="https://www.studiotanya.hr" />
+    <meta property="og:image" content="https://www.studiotanya.com/assets/img/main.jpg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="200">
+    <meta property="og:image:height" content="200">
+    <link href="../assets/css/vendor/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendor/jquery.floating-social-share.min.css" />
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <script src="assets/js/vendor/jquery.min.js"></script>
+    <script src="../assets/js/vendor/popper.min.js"></script>
+    <script src="assets/js/vendor/bootstrap.min.js"></script>
+    <script src="assets/js/vendor/angular.min.js"></script>
+    <script src="assets/js/vendor/angular-animate.min.js"></script>
+    <script src="assets/js/vendor/angular-aria.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Encode Sans Expanded' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css?family=Tangerine" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Encode Sans Expanded';
+            font-size: 16px;
+            position: relative;
+        }
+        .banner {
+            background: url("assets/img/banner.jpg") no-repeat center center;
+            background-size: cover;
+        }
+        .font-beauty {
+            font-family: 'Tangerine', serif;
+      }
+    </style>
+</head>
+<body id="home" ng-app="app" ng-controller="appCtrl" data-spy="scroll" data-target=".navbar" data-offset="60" >
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div>
+            <img src="../assets/img/logo.png" style="height:60px" />
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#section1">O nama</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#section2">Usluge</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#section3">Cijene</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#section4">Rezervacija</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#section5">Kontakt</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <header class="bg-primary banner">
+        <div class="container text-white font-weight-bold text-center" style="padding:140px 0 140px 0">
+            <div class="text-shadow">
+                <h2 class="font-beauty" style="font-size:70px">Studio za masažu i njegu tijela</h2>
+                <h1 style="font-size:70px" class="text-uppercase">Studio Tanja Rijeka</h1>
+            </div>
+            <div style="font-size:26px">
+                <a href="#section4" class="btn btn-primary"><i class="fa fa-check fa-2x"></i> Rezervacija termina</a>
+                <a href="tel:{{config.phone}}" class="btn btn-light"><i class="fa fa-phone fa-2x"></i> {{config.phone}}</a>
+            </div>
+        </div>
+    </header>
+    <div class="text-center p-3">
+        <div id="section1" class="container section">
+            <h2>Usluge</h2>
+            <hr />
+            <div class="text-uppercase" style="font-size:16px">
+                <h2>Klasična masaža</h2>
+                <h2>Sportska masaža</h2>
+                <h2>Medisinska masaža</h2>
+                <h2>Maderoterapija</h2>
+                <h2>Cupping Therapy</h2>
+                <h2>Relay Masaža</h2>
+                <h2>Reflksologija stopala</h2>
+                <h2>Terapeutska masaža</h2>
+                <h2>Limfna drenaža</h2>
+                <h2>Shiatsu tretman</h2>
+                <h2>Njega ruku i stopala</h2>
+            </div>
+            <hr />
+            <div>
+                <div>
+                    <img src="assets/img/terapijska-masaza.jpg" class="img-thumbnail" style="width:500px" />
+                </div>
+                <div>
+                    <h2 class="text-uppercase">Terapijska masaža</h2>
+                    <p class="lead">Čovjek je socijalno biće koje živi u zajednici, iz tog razloga ima želju za povezivanjem na fizičkoj, emocionalnoj i duhovnoj razini. Terapeutskom masažom osim izbacivanja raznih toksina iz tijela potičemo uravnoteženje tijela, duha i emocija.</p>
+                </div>
+            </div>
+            <div style="margin-top:40px" class="slideanim">
+                <div class="row mt-2 text-center" style="overflow:hidden">
+                    <div class="col-lg-4 p-2">
+                        <div class="card shadow zoom bg-light" style="min-height:480px">
+                            <a href="refleksoterapijska-masaza-stopala.html">
+                                <img class="card-img-top" src="../assets/img/refleksoterapijska-masaza-stopala.jpg" alt="studio tanya">
+                                <div class="card-body">
+                                    <h4 class="card-title">REFLEKSOTERAPIJSKA MASAŽA STOPALA</h4>
+                                    <p class="card-text">Refleksoterapija je danas jedna od najpopularnijih oblika komplementar...</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 p-2">
+                        <div class="card shadow zoom bg-light" style="min-height:480px">
+                            <a href="refleksoterapijska-masaza-stopala.html">
+                                <img class="card-img-top" src="../assets/img/maderoterapija.jpg" alt="studio tanya">
+                                <div class="card-body">
+                                    <h4 class="card-title">MADEROTERAPIJA i ANTICELULITNA MASAŽA (kombinacija)</h4>
+                                    <p class="card-text">Izrazito popularna terapija sa drvenim valjcima(oklagijama) čiji je fo...</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 p-2">
+                        <div class="card shadow zoom bg-light" style="min-height:480px">
+                            <a href="refleksoterapijska-masaza-stopala.html">
+                                <img class="card-img-top" src="../assets/img/cupping-terapija.jpg" alt="studio tanya">
+                                <div class="card-body">
+                                    <h4 class="card-title">CUPPING TERAPIJA</h4>
+                                    <p class="card-text">Cupping terapija koristi se diljem svijeta te ima dugu i plemenitu pov...</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-2 text-center">
+                    <div class="col-lg-4 p-2">
+                        <div class="card shadow zoom bg-light" style="min-height:480px">
+                            <a href="refleksoterapijska-masaza-stopala.html">
+                                <img class="card-img-top" src="../assets/img/cupping-terapija-lica.jpg" alt="studio tanya">
+                                <div class="card-body">
+                                    <h4 class="card-title">CUPPING TERAPIJA LICA</h4>
+                                    <p class="card-text">Cupping terapija lica je potpuno prirodna alternativa kirurškom faceli...</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 p-2">
+                        <div class="card shadow zoom bg-light" style="min-height:480px">
+                            <a href="refleksoterapijska-masaza-stopala.html">
+                                <img class="card-img-top" src="../assets/img/klasicna-masaza.jpg" alt="studio tanya">
+                                <div class="card-body">
+                                    <h4 class="card-title">KLASIČNA MASAŽA</h4>
+                                    <p class="card-text">Klasična masaža jedna je od najstarijih metoda otklanjanja bolova i op...</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 p-2">
+                        <div class="card shadow zoom bg-light" style="min-height:480px">
+                            <a href="refleksoterapijska-masaza-stopala.html">
+                                <img class="card-img-top" src="../assets/img/sportska-masaza.jpg" alt="studio tanya">
+                                <div class="card-body">
+                                    <h4 class="card-title">SPORTSKA MASAŽA</h4>
+                                    <p class="card-text">Sportska masaža je usmjerenja na bolju prokrvljenost mišića (poboljšanj...</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="section2" class="container section slideanim">
+            <h2>Cijene</h2>
+            <hr />
+            <div>
+                ...
+            </div>
+        </div>
+        <div id="section3" class="container section slideanim">
+            <h2>Rezervacija termina</h2>
+            <hr />
+                ...
+        </div>
+
+        <div id="section4" class="container section slideanim">
+            <h2>O nama</h2>
+            <hr />
+            <div>
+                <img src="assets/img/logo.png" class="rounded-circle img-thumbnail shadow" style="width:300px" />
+            </div>
+        </div>
+    </div>
+    <div id="section5" class="container-fluid section text-white p-5 slideanim bg-primary">
+        <div class="container">
+            <h2 class="text-white">Kontakt</h2>
+            <div ng-controller="contactCtrl" class="row">
+                <div class="col-sm-5">
+                    <label>{{config.company}}</label>
+                    <p>OIB {{config.oib}}</p>
+                    <p><i class="fa fa-home"></i> {{config.address}}</p>
+                    <p><a href="tel:{{config.phone}}" class="text-white"><i class="fa fa-phone"></i> {{config.phone}}</a></p>
+                    <p><a href="mailto:{{config.email}}" class="text-white"><i class="far fa-envelope"></i> {{config.email}}</a></p>
+                    <p><a href="{{config.url}}" class="text-white"><i class="fa fa-globe"></i> {{config.sitename}}</a></p>
+                </div>
+                <div class="col-sm-7">
+                    <h3 ng-if="!showAlert">Pošaljite upit</h3>
+                    <div ng-if="showAlert" class="alert alert-success">
+                        <strong>Poruka je uspješno poslana!</strong>
+                        <p>Odgovorit ćemo Vam u najskorijem roku.</p>
+                    </div>
+                    <div ng-if="!showAlert">
+                        <div class="row">
+                            <div class="col-sm-6 form-group">
+                                <input ng-model="d.name" class="form-control" name="name" placeholder="Ime" type="text" required>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <input ng-model="d.email" class="form-control" name="email" placeholder="Email" type="email" required>
+                            </div>
+                        </div>
+                        <textarea ng-model="d.message" class="form-control" name="comments" placeholder="Poruka" rows="5"></textarea><br>
+                        <div class="row">
+                            <div class="col-sm-12 form-group">
+                                <button class="btn btn-outline-light pull-right" ng-disabled="isSendButtonDisabled" ng-click="send(d)"><span ng-class="sendicon"></span> {{sendicontitle}}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="fixed text-right d-none d-sm-block color-secondary" style="margin:0 20px 80px 0">
+            <a href="#home" title="Na vrh">
+                <span class="fa fa-chevron-up fa-3x"></span>
+            </a>
+        </div>
+        <!--<div class="navbar-fixed-bottom m-10 text-right" style="margin-bottom:40px">
+            <a href="#home" title="Na vrh">
+                <span class="fa fa-chevron-up fa-2x"></span>
+            </a>
+        </div>-->
+        <div class="text-right">
+            <a href="https://www.igprog.hr" title="igprog.hr" class="text-white">Copyright © {{year}} IG PROG</a>
+        </div>
+    </div>
+    <script src="assets/js/app.js"></script>
+    <script type="text/javascript" src="../assets/js/vendor/jquery.floating-social-share.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $(".navbar a, footer a[href='#home'], a").on('click', function (event) {
+                if (this.hash !== "") {
+                    event.preventDefault();
+                    var hash = this.hash;
+                    $('html, body').animate({
+                        scrollTop: $(hash).offset().top
+                    }, 900, function () {
+                        window.location.hash = hash;
+                    });
+                }
+            });
+
+            $(window).scroll(function () {
+                $(".slideanim").each(function () {
+                    var pos = $(this).offset().top;
+                    var winTop = $(window).scrollTop();
+                    if (pos < winTop + 600) {
+                        $(this).addClass("slide");
+                    }
+                });
+            });
+
+            //TODO:
+            //$(window).scroll(function () {
+            //    $(".fixed").each(function () {
+            //        var pos = $(this).offset().top;
+            //        var winTop = $(window).scrollTop();
+            //        console.log(pos);
+            //        if (pos < 900) {
+            //            $(".fixed").addClass("d-none");
+            //        } else {
+            //            $(".fixed").removeClass("d-none");
+            //        }
+            //    });
+            //});
+
+        })
+    </script>
+
+    <script>
+        $("body").floatingSocialShare({
+            buttons: [
+              "facebook", "google-plus", "linkedin", "pinterest", "twitter"
+            ],
+            twitter_counter: true,
+            text: "Podijeli sa: ",
+            url: "https://www.studiotanya.hr/"
+        });
+    </script>
+</body>
+</html>
