@@ -1,0 +1,53 @@
+﻿<div class="shadow p-5"  ng-controller="reservationCtrl">
+    <h2>Rezervacija termina</h2>
+    <div class="p-5">
+        <form>
+            <div class="text-left">
+                <div class="form-group">
+                    <label>Usluga:</label>
+                    <select ng-model="d.service" class="form-control">
+                        <option>Klasična masaža</option>
+                        <option>Sportska masaža</option>
+                        <option>Medicinska masaža</option>
+                        <option>Maderoterapija</option>
+                        <option>Cupping Therapy</option>
+                        <option>Relax Masaža</option>
+                        <option>Refleksologija stopala</option>
+                        <option>Terapeutska masaža</option>
+                        <option>Limfna drenaža</option>
+                        <option>Shiatsu tretman</option>
+                        <option>Njega ruku i stopala</option>
+                    </select>
+                </div>
+                <div class="form-inline">
+                    <label class="mr-2">Datum:</label>
+                    <input ng-model="d.date" type="date" class="form-control mr-2">
+                    <label class="mr-2">Sat:</label>
+                    <select ng-model="d.time" class="form-control">
+                        <option>8:00</option>
+                        <option>9:00</option>
+                        <option>10:00</option>
+                        <option>11:00</option>
+                        <option>12:00</option>
+                        <option>13:00</option>
+                        <option>14:00</option>
+                        <option>15:00</option>
+                        <option>16:00</option>
+                        <option>18:00</option>
+                        <option>20:00</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Ime:</label>
+                    <input ng-model="d.name" type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Broj telefona:</label>
+                    <input ng-model="d.phone" type="text" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary" ng-click="send(d)">Pošalji</button>
+            </div>
+        </form>
+    </div>
+    <!--<pre ng-if="config.debug" class="text-left">{{d | json}}</pre>-->
+</div>

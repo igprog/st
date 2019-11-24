@@ -81,10 +81,10 @@
         <div class="container text-white font-weight-bold text-center" style="padding:140px 0 140px 0">
             <div class="text-shadow">
                 <h2 class="font-beauty" style="font-size:70px">Studio za masažu i njegu tijela</h2>
-                <h1 style="font-size:70px" class="text-uppercase">Studio Tanja Rijeka</h1>
+                <h1 style="font-size:70px" class="text-uppercase">Studio Tanya Rijeka</h1>
             </div>
             <div style="font-size:26px">
-                <a href="#section4" class="btn btn-primary"><i class="fa fa-check fa-2x"></i> Rezervacija termina</a>
+                <a href="#section3" class="btn btn-primary text-uppercase"><i class="fa fa-check fa-2x"></i> Rezerviraj Termin</a>
                 <a href="tel:{{config.phone}}" class="btn btn-light"><i class="fa fa-phone fa-2x"></i> {{config.phone}}</a>
             </div>
         </div>
@@ -96,11 +96,11 @@
             <div class="text-uppercase" style="font-size:16px">
                 <h2>Klasična masaža</h2>
                 <h2>Sportska masaža</h2>
-                <h2>Medisinska masaža</h2>
+                <h2>Medicinska masaža</h2>
                 <h2>Maderoterapija</h2>
                 <h2>Cupping Therapy</h2>
-                <h2>Relay Masaža</h2>
-                <h2>Reflksologija stopala</h2>
+                <h2>Relax Masaža</h2>
+                <h2>Refleksologija stopala</h2>
                 <h2>Terapeutska masaža</h2>
                 <h2>Limfna drenaža</h2>
                 <h2>Shiatsu tretman</h2>
@@ -117,7 +117,7 @@
                 </div>
             </div>
             <div style="margin-top:40px" class="slideanim">
-                <div class="row mt-2 text-center" style="overflow:hidden">
+                <div class="row mt-2 p-3 text-center" style="overflow:hidden">
                     <div class="col-lg-4 p-2">
                         <div class="card shadow zoom bg-light" style="min-height:480px">
                             <a href="refleksoterapijska-masaza-stopala.html">
@@ -152,7 +152,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row mt-2 text-center">
+                <div class="row mt-2 p-3 text-center">
                     <div class="col-lg-4 p-2">
                         <div class="card shadow zoom bg-light" style="min-height:480px">
                             <a href="refleksoterapijska-masaza-stopala.html">
@@ -189,8 +189,6 @@
                 </div>
             </div>
         </div>
-
-
         <div id="section2" class="container section slideanim">
             <h2>Cijene</h2>
             <hr />
@@ -199,9 +197,7 @@
             </div>
         </div>
         <div id="section3" class="container section slideanim">
-            <h2>Rezervacija termina</h2>
-            <hr />
-                ...
+            <ng-include src="'./assets/partials/reservation.html'"></ng-include>
         </div>
 
         <div id="section4" class="container section slideanim">
@@ -249,8 +245,8 @@
                 </div>
             </div>
         </div>
-        <div class="fixed text-right d-none d-sm-block color-secondary" style="margin:0 20px 80px 0">
-            <a href="#home" title="Na vrh">
+        <div class="fixed text-right d-none d-sm-block" style="margin:0 20px 80px 0">
+            <a href="#home" title="Na vrh" class="color-secondary">
                 <span class="fa fa-chevron-up fa-3x"></span>
             </a>
         </div>
