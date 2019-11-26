@@ -42,7 +42,7 @@
         }
     </style>
 </head>
-<body>
+<body ng-app="app" ng-controller="appCtrl">
     <nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <div>
             <img src="../assets/img/logo.png" style="height:60px" />
@@ -58,21 +58,33 @@
             </ul>
         </div>
     </nav>
-    <div class="container" style="margin-top:80px">
+    <div class="container section p-2" style="margin-top:80px">
         <h1 class="card-title">REFLEKSOTERAPIJSKA MASAŽA STOPALA</h1>
-        <div class="row">
-            <div class="col-sm-6">
+        <div class="row section">
+            <div class="col-lg-6">
                 <p class="lead text-justify">Refleksoterapija je danas jedna od najpopularnijih oblika komplementarne medicine. Ono što je čini popularnom njena je jednostavnost i sigurnost. Ima ključnu ulogu u nadvladavanju stresa jer potiče mir i stvara ugodno raspoloženje. Dobrobit refleksoterapije osjetit ćete već pri prvom dodiru vaših stopala. Svaki dio tijela i svaka tjelesna funkcija ima odgovarajuću refleksnu točku na stopalu. Refleksne točke na stopalu vjeran su odraz organa, žlijezda i drugih dijelova tijela. Djelujući na njih, preko živčanih puteva možemo stimulirati bilo koji organ, funkciju ili dio tijela koji je napet, začepljen ili oštećen prilikom nesreće, ozljede ili bolesti.</p>
             </div>
-            <div class="col-sm-6">
+            <div class="col-lg-6">
                 <img class="img-thumbnail" src="../assets/img/refleksoterapijska-masaza-stopala.jpg" alt="studio tanya">
             </div>
         </div>
-        <div>
-            <h2>Rezervirajte termin</h2>
-            <hr />
-            ...
+        <div class="section">
+            <ng-include src="'./assets/partials/reservation.html'"></ng-include>
         </div>
     </div>
+
+    <script src="assets/js/app.js"></script>
+    <script type="text/javascript" src="../assets/js/vendor/jquery.floating-social-share.min.js"></script>
+
+    <script>
+        $("body").floatingSocialShare({
+            buttons: [
+              "facebook", "google-plus", "linkedin", "pinterest", "twitter"
+            ],
+            twitter_counter: true,
+            text: "Podijeli sa: ",
+            url: "https://www.studiotanya.hr/"
+        });
+    </script>
 </body>
 </html>
