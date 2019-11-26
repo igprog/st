@@ -1,0 +1,17 @@
+﻿<div class="container section p-2" style="margin-top:100px">
+    <h1 class="card-title">{{service}}</h1>
+    <div class="row section">
+        <div class="col-lg-6">
+            <p class="lead text-justify">{{desc}}</p>
+        </div>
+        <div class="col-lg-6">
+            <img class="img-thumbnail" src="../assets/img/{{img}}" alt="studio tanya">
+        </div>
+    </div>
+    <div>
+        <h2>Cijena: {{price | number:2}} kn</h2>
+    </div>
+    <div class="section">
+        <reservation-directive service="service"></reservation-directive>
+    </div>
+</div>

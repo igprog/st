@@ -44,20 +44,25 @@ angular.module('app', [])
 }])
 
 .controller('reservationCtrl', ['$scope', '$http', 'f', function ($scope, $http, f) {
-    var webService = 'Mail';
-    var d = {
-        service: null,
-        date: new Date(),
-        time: null,
-        name: null,
-        phone: ''
+    var webService = 'Reservation';
+    $scope.loading = false;
+    var init = () => {
+        f.post(webService, 'Init', {}).then((d) => {
+            $scope.d = d;
+            $scope.d.date = new Date();
+        });
     }
-    $scope.d = d;
+    init();
 
-    $scope.send = function (d) {
-        alert('TODO'); return false;
-        f.post(webService, 'SendReservation', { x: d }).then((d) => {
-            //alert(d.msg);
+    $scope.send = (d, service) => {
+        if (service !== null) {
+            d.service = service;
+        }
+        d.date = f.setDate(d.date);
+        $scope.loading = true;
+        f.post(webService, 'Send', { x: d }).then((d) => {
+            $scope.d = d;
+            $scope.loading = false;
         });
     }
 
@@ -111,6 +116,61 @@ angular.module('app', [])
     }
 
 }])
+
+/********** Directives **********/
+.directive('reservationDirective', () => {
+    return {
+        restrict: 'E',
+        scope: {
+            service: '='
+        },
+        templateUrl: './assets/partials/reservation.html'
+    };
+})
+
+.directive('detailsDirective', () => {
+    return {
+        restrict: 'E',
+        scope: {
+            service: '=',
+            desc: '=',
+            img: '=',
+            price: '='
+        },
+        templateUrl: './assets/partials/details.html'
+    };
+})
+
+.directive('allowOnlyNumbers', function () {
+    return {
+        restrict: 'A',
+        link: function (scope, elm, attrs, ctrl) {
+            elm.on('keydown', function (event) {
+                var $input = $(this);
+                var value = $input.val();
+                value = value.replace(',', '.');
+                $input.val(value);
+                if (event.which == 64 || event.which == 16) {
+                    return false;
+                } else if (event.which >= 48 && event.which <= 57) {
+                    return true;
+                } else if (event.which >= 96 && event.which <= 105) {
+                    return true;
+                } else if ([8, 13, 27, 37, 38, 39, 40].indexOf(event.which) > -1) {
+                    return true;
+                } else if (event.which == 110 || event.which == 188 || event.which == 190) {
+                    return true;
+                } else if (event.which == 46) {
+                    return true;
+                } else {
+                    event.preventDefault();
+                    return false;
+                }
+            });
+        }
+    }
+})
+/********** Directives **********/
 
 
 ;

@@ -52,7 +52,9 @@
 <body id="home" ng-app="app" ng-controller="appCtrl" data-spy="scroll" data-target=".navbar" data-offset="60" >
     <nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <div>
-            <img src="../assets/img/logo.png" style="height:60px" />
+            <a href="index.html">
+                <img src="../assets/img/logo.png" style="height:60px" />
+            </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -69,7 +71,7 @@
                     <a class="nav-link" href="#section3">Cijene</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#section4">Rezervacija</a>
+                    <a class="nav-link" href="#section3">Rezervacija</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#section5">Kontakt</a>
@@ -131,10 +133,10 @@
                     </div>
                     <div class="col-lg-4 p-2">
                         <div class="card shadow zoom bg-light" style="min-height:480px">
-                            <a href="refleksoterapijska-masaza-stopala.html">
+                            <a href="maderoterapija-i-anticelulitna-masaza.html">
                                 <img class="card-img-top" src="../assets/img/maderoterapija.jpg" alt="studio tanya">
                                 <div class="card-body">
-                                    <h4 class="card-title">MADEROTERAPIJA i ANTICELULITNA MASAŽA (kombinacija)</h4>
+                                    <h4 class="card-title">MADEROTERAPIJA I ANTICELULITNA MASAŽA (kombinacija)</h4>
                                     <p class="card-text">Izrazito popularna terapija sa drvenim valjcima(oklagijama) čiji je fo...</p>
                                 </div>
                             </a>
@@ -197,7 +199,12 @@
             </div>
         </div>
         <div id="section3" class="container section slideanim">
-            <ng-include src="'./assets/partials/reservation.html'"></ng-include>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <ng-include src="'./assets/partials/reservation.html'"></ng-include>
+                </div>
+            </div>
+            
         </div>
 
         <div id="section4" class="container section slideanim">
