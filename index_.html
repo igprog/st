@@ -286,8 +286,7 @@
         </div>
     </div>
     <div id="section5" class="container-fluid section text-white p-5 slideanim bg-primary">
-        <div>
-            <div ng-controller="contactCtrl" class="row">
+        <div ng-controller="contactCtrl" class="row">
                 <div class="col-sm-3">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2805.4311005275113!2d14.466171615816156!3d45.31991645107989!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4764a0521f8189c3%3A0xd9db8ea3f531870e!2sUl.%20Drage%20Gervaisa%2039%2C%2051000%2C%20Rijeka!5e0!3m2!1shr!2shr!4v1574866403878!5m2!1shr!2shr" frameborder="0" style="border:0; width:95%; height:90%" allowfullscreen="" ></iframe>
                 </div>
@@ -301,30 +300,36 @@
                     <p><a href="{{config.url}}" class="text-white"><i class="fa fa-globe"></i> {{config.sitename}}</a></p>
                 </div>
                 <div class="col-sm-5">
-                    <h3 ng-if="!showAlert">Pošaljite upit</h3>
-                    <div ng-if="showAlert" class="alert alert-success">
-                        <strong>Poruka je uspješno poslana!</strong>
-                        <p>Odgovorit ćemo Vam u najskorijem roku.</p>
+                    <div ng-if="loading" class="text-center">
+                        <i class="fa fa-spinner fa-pulse fa-5x fa-fw text-white"></i>
                     </div>
-                    <div ng-if="!showAlert">
-                        <div class="row">
-                            <div class="col-sm-6 form-group">
-                                <input ng-model="d.name" class="form-control" name="name" placeholder="Ime" type="text" required>
-                            </div>
-                            <div class="col-sm-6 form-group">
-                                <input ng-model="d.email" class="form-control" name="email" placeholder="Email" type="email" required>
+                    <div ng-if="!loading">
+                        <div ng-if="!d.response.isSent">
+                            <h3>Pošaljite upit</h3>
+                            <div>
+                                <div class="row">
+                                    <div class="col-sm-6 form-group">
+                                        <input ng-model="d.name" class="form-control" name="name" placeholder="Ime" type="text" required>
+                                    </div>
+                                    <div class="col-sm-6 form-group">
+                                        <input ng-model="d.email" class="form-control" name="email" placeholder="Email" type="email" required>
+                                    </div>
+                                </div>
+                                <textarea ng-model="d.msg" class="form-control" name="comments" placeholder="Poruka" rows="5"></textarea><br>
+                                <div class="row">
+                                    <div class="col-sm-12 form-group">
+                                        <button class="btn btn-outline-light pull-right" ng-click="send(d)"><i class="fa fa-paper-plane"></i> Pošalji</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <textarea ng-model="d.message" class="form-control" name="comments" placeholder="Poruka" rows="5"></textarea><br>
-                        <div class="row">
-                            <div class="col-sm-12 form-group">
-                                <button class="btn btn-outline-light pull-right" ng-disabled="isSendButtonDisabled" ng-click="send(d)"><span ng-class="sendicon"></span> {{sendicontitle}}</button>
-                            </div>
+                        <div ng-if="d.response.isSent" class="alert alert-success">
+                            <strong>Poruka je uspješno poslana!</strong>
+                            <p>Odgovorit ćemo Vam u najskorijem roku.</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
         <div class="fixed text-right d-none d-sm-block" style="margin:0 20px 80px 0">
             <a href="#home" title="Na vrh" class="color-secondary">
                 <span class="fa fa-chevron-up fa-3x"></span>
@@ -369,32 +374,7 @@
 
             $(window).scroll(function () {
                 slideanim();
-                //$(".slideanim").each(function () {
-                //    var pos = $(this).offset().top;
-                //    var winTop = $(window).scrollTop();
-                //    if (pos < winTop + 600) {
-                //        $(this).addClass("slide");
-                //    }
-                //});
             });
-
-
-            
-
-            //TODO:
-            //$(window).scroll(function () {
-            //    $(".fixed").each(function () {
-            //        var pos = $(this).offset().top;
-            //        var winTop = $(window).scrollTop();
-            //        console.log(pos);
-            //        if (pos < 900) {
-            //            $(".fixed").addClass("d-none");
-            //        } else {
-            //            $(".fixed").removeClass("d-none");
-            //        }
-            //    });
-            //});
-
         })
     </script>
 

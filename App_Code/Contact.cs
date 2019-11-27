@@ -3,34 +3,30 @@ using Newtonsoft.Json;
 using Igprog;
 
 /// <summary>
-/// Reservation
+/// Contact
 /// </summary>
 [WebService(Namespace = "http://studiotanya.hr/")]
 [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
 [System.Web.Script.Services.ScriptService]
-public class Reservation : System.Web.Services.WebService {
+public class Contact : System.Web.Services.WebService {
     Global G = new Global();
 
-    public Reservation() {
+    public Contact() {
     }
 
-    public class NewReservation {
-        public string service;
-        public string date;
-        public string time;
+    public class NewContact {
         public string name;
-        public string phone;
+        public string email;
+        public string msg;
         public Mail.Response response;
     }
 
     [WebMethod]
     public string Init() {
-        NewReservation x = new NewReservation();
-        x.service = null;
-        x.date = null;
-        x.time = null;
+        NewContact x = new NewContact();
         x.name = null;
-        x.phone = null;
+        x.email = null;
+        x.msg = null;
         x.response = new Mail.Response();
         x.response.isSent = false;
         x.response.msg = null;
@@ -38,13 +34,12 @@ public class Reservation : System.Web.Services.WebService {
     }
 
     [WebMethod]
-    public string Send(NewReservation x) {
+    public string Send(NewContact x) {
         string subject = string.Format(@"
-<p>Usluga: {0}</p>
-<p>Datum: {1}</p>
-<p>Vrijeme: {2}</p>
-<p>Ime: {3}</p>
-Telefon: <a href=""tel:{4}"" style=""color:#ff6b6b"">&#9742; {4}</a>", x.service, x.date, x.time, x.name, x.phone);
+<h3>Novi upit</h3>
+<p>Ime: {0}</p>
+<p>Email: {1}</p>
+<p>Poruka: {2}</p>", x.name, x.email, x.msg);
         Mail m = new Mail();
         x.response = m.SendMail(G.email, "Novi upit", subject);
         return JsonConvert.SerializeObject(x, Formatting.None);

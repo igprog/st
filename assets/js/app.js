@@ -39,7 +39,7 @@ angular.module('app', [])
     };
     getConfig();
     $scope.year = (new Date).getFullYear();
-    debugger;
+
     $scope.setService = (x) => {
         $rootScope.service = x;
     }
@@ -73,24 +73,34 @@ angular.module('app', [])
 
 }])
 
-.controller('contactCtrl', ['$scope', '$http', '$rootScope', function ($scope, $http, $rootScope) {
-    var webService = 'Mail';
-    $scope.showAlert = false;
-    $scope.sendicon = 'far fa-envelope';
-    $scope.sendicontitle = 'Pošalji';
+.controller('contactCtrl', ['$scope', '$http', '$rootScope', 'f', function ($scope, $http, $rootScope, f) {
+    var webService = 'Contact';
+    $scope.loading = false;
+    //$scope.showAlert = false;
+    //$scope.sendicon = 'far fa-envelope';
+    //$scope.sendicontitle = 'Pošalji';
 
-    $scope.d = {
-        name: '',
-        email: '',
-        message: ''
+    var init = () => {
+        f.post(webService, 'Init', {}).then((d) => {
+            $scope.d = d;
+        });
     }
+    init();
+
+    //$scope.d = {
+    //    name: '',
+    //    email: '',
+    //    message: ''
+    //}
 
     $scope.send = function (d) {
-        $scope.isSendButtonDisabled = true;
-        $scope.sendicon = 'fa fa-spinner fa-spin';
-        $scope.sendicontitle = 'Šaljem';
-
-        f.post(webService, 'Send', { name: d.name, email: d.email, messageSubject: 'Upit', message: d.message }).then((d) => {
+        //$scope.isSendButtonDisabled = true;
+        //$scope.sendicon = 'fa fa-spinner fa-spin';
+        //$scope.sendicontitle = 'Šaljem';
+        $scope.loading = true;
+        f.post(webService, 'Send', { x: d }).then((d) => {
+            $scope.d = d;
+            $scope.loading = false;
             //alert(d.msg);
         })
 

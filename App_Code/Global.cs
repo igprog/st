@@ -19,7 +19,7 @@ namespace Igprog {
         public string myPassword = ConfigurationManager.AppSettings["myPassword"];
         public int myServerPort = Convert.ToInt32(ConfigurationManager.AppSettings["myServerPort"]);
         public string myServerHost = ConfigurationManager.AppSettings["myServerHost"];
-
+        public string email = ConfigurationManager.AppSettings["email"];
 
     }
 }
