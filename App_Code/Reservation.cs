@@ -49,7 +49,7 @@ public class Reservation : System.Web.Services.WebService {
 <p>Datum: {1}</p>
 <p>Vrijeme: {2}</p>
 <p>Ime: {3}</p>
-<p>Telefon: <a href=tel:'{4}'>{4}</a></p>", x.service, x.date, x.time, x.name, x.phone);
+<p>Telefon: <a href='tel:{4}' style='color:#ff6b6b'>&#9742; {4}</a></p>", x.service, x.date, x.time, x.name, x.phone);
         Mail m = new Mail();
         x.response = m.SendMail(G.myEmail, "Novi upit", subject);
         return JsonConvert.SerializeObject(x, Formatting.None);

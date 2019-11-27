@@ -7,5 +7,18 @@
   "phone": "+385 95 910 9321",
   "email": "info@studiotanya.hr",
   "url": "https://www.igprog.hr",
-  "sitename": "www.studiotanya.hr"
+  "sitename": "www.studiotanya.hr",
+  "services": [
+    "Klasična masaža",
+    "Sportska masaža",
+    "Medicinska masaža",
+    "Maderoterapija",
+    "Cupping Therapy",
+    "Relax Masaža",
+    "Refleksologija stopala",
+    "Terapeutska masaža",
+    "Limfna drenaža",
+    "Shiatsu tretman",
+    "Njega ruku i stopala"
+  ]
 }

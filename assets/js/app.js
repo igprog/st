@@ -30,9 +30,7 @@ angular.module('app', [])
     }
 }])
 
-
 .controller('appCtrl', ['$scope', '$http', '$rootScope', function ($scope, $http, $rootScope) {
-
     var getConfig = function () {
         $http.get('../config/config.json')
           .then(function (response) {
@@ -41,11 +39,18 @@ angular.module('app', [])
     };
     getConfig();
     $scope.year = (new Date).getFullYear();
+    debugger;
+    $scope.setService = (x) => {
+        $rootScope.service = x;
+    }
 }])
 
-.controller('reservationCtrl', ['$scope', '$http', 'f', function ($scope, $http, f) {
+.controller('reservationCtrl', ['$scope', '$http', '$rootScope', 'f', function ($scope, $http, $rootScope, f) {
     var webService = 'Reservation';
     $scope.loading = false;
+    //$scope.service = $rootScope.service;
+    $scope.config = $rootScope.config;
+
     var init = () => {
         f.post(webService, 'Init', {}).then((d) => {
             $scope.d = d;

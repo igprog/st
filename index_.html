@@ -34,22 +34,8 @@
     <script src="assets/js/vendor/angular-aria.min.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Encode Sans Expanded' rel='stylesheet'>
     <link href="https://fonts.googleapis.com/css?family=Tangerine" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Encode Sans Expanded';
-            font-size: 16px;
-            position: relative;
-        }
-        .banner {
-            background: url("assets/img/banner.jpg") no-repeat center center;
-            background-size: cover;
-        }
-        .font-beauty {
-            font-family: 'Tangerine', serif;
-      }
-    </style>
 </head>
-<body id="home" ng-app="app" ng-controller="appCtrl" data-spy="scroll" data-target=".navbar" data-offset="60" >
+<body id="home" ng-app="app" ng-controller="appCtrl" data-spy="scroll" data-target=".navbar" data-offset="60" ng-cloak>
     <nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <div>
             <a href="index.html">
@@ -62,16 +48,16 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#section1">O nama</a>
+                    <a class="nav-link" href="#section1">Usluge</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#section2">Usluge</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#section3">Cijene</a>
+                    <a class="nav-link" href="#section2">Cijene</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#section3">Rezervacija</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#section4">O nama</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#section5">Kontakt</a>
@@ -96,17 +82,12 @@
             <h2>Usluge</h2>
             <hr />
             <div class="text-uppercase" style="font-size:16px">
-                <h2>Klasična masaža</h2>
-                <h2>Sportska masaža</h2>
-                <h2>Medicinska masaža</h2>
-                <h2>Maderoterapija</h2>
-                <h2>Cupping Therapy</h2>
-                <h2>Relax Masaža</h2>
-                <h2>Refleksologija stopala</h2>
-                <h2>Terapeutska masaža</h2>
-                <h2>Limfna drenaža</h2>
-                <h2>Shiatsu tretman</h2>
-                <h2>Njega ruku i stopala</h2>
+                <a href="#section3" style="color:#000" class="d-none d-sm-block">
+                    <h2 ng-repeat="x in config.services" ng-click="setService(x)" style="display:inline">{{x}}<strong ng-if="$index<config.services.length-1" class="text-primary">  |  </strong></h2>
+                </a>
+                <a href="#section3" style="color:#000" class="d-block d-sm-none">
+                    <h2 ng-repeat="x in config.services" ng-click="setService(x)">{{x}}</h2>
+                </a>
             </div>
             <hr />
             <div>
@@ -157,7 +138,7 @@
                 <div class="row mt-2 p-3 text-center">
                     <div class="col-lg-4 p-2">
                         <div class="card shadow zoom bg-light" style="min-height:480px">
-                            <a href="refleksoterapijska-masaza-stopala.html">
+                            <a href="cupping-terapija-lica.html">
                                 <img class="card-img-top" src="../assets/img/cupping-terapija-lica.jpg" alt="studio tanya">
                                 <div class="card-body">
                                     <h4 class="card-title">CUPPING TERAPIJA LICA</h4>
@@ -168,7 +149,7 @@
                     </div>
                     <div class="col-lg-4 p-2">
                         <div class="card shadow zoom bg-light" style="min-height:480px">
-                            <a href="refleksoterapijska-masaza-stopala.html">
+                            <a href="klasicna-masaza.html">
                                 <img class="card-img-top" src="../assets/img/klasicna-masaza.jpg" alt="studio tanya">
                                 <div class="card-body">
                                     <h4 class="card-title">KLASIČNA MASAŽA</h4>
@@ -179,7 +160,7 @@
                     </div>
                     <div class="col-lg-4 p-2">
                         <div class="card shadow zoom bg-light" style="min-height:480px">
-                            <a href="refleksoterapijska-masaza-stopala.html">
+                            <a href="sportska-masaza.html">
                                 <img class="card-img-top" src="../assets/img/sportska-masaza.jpg" alt="studio tanya">
                                 <div class="card-body">
                                     <h4 class="card-title">SPORTSKA MASAŽA</h4>
@@ -192,10 +173,99 @@
             </div>
         </div>
         <div id="section2" class="container section slideanim">
-            <h2>Cijene</h2>
-            <hr />
-            <div>
-                ...
+            <h2>Cjenik Usluga</h2>
+            <div class="tavle-responsive text-left">
+                <table class="table table-condensed">
+                    <tr>
+                        <th>USLUGA</th>
+                        <th>CIJENA</th>
+                    </tr>
+                    <tr>
+                        <th colspan="2" class="text-primary pt-4">MASAŽA</th>
+                    </tr>
+                    <tr>
+                        <td>KLASIČNA (PARCIJALNA) 30 MIN</td>
+                        <td>100,00 kn</td>
+                    </tr>
+                    <tr>
+                        <td>KLASIČNA (CIJELO TIJELO) 60 MIN</td>
+                        <td>180,00 kn</td>
+                    </tr>
+                    <tr>
+                        <td>SPORTSKA (PARCIJALNA) 30 MIN</td>
+                        <td>100,00 kn</td>
+                    </tr>
+                    <tr>
+                        <td>SPORTSKA (CIJELO TIJELO) 60 MIN</td>
+                        <td>180,00 kn</td>
+                    </tr>
+                    <tr>
+                        <td>TERAPIJSKA (CIJELO TIJELO) 60 MIN</td>
+                        <td>170,00 kn</td>
+                    </tr>
+                    <tr>
+                        <td>MADEROTERAPIJA (ANTICELULITNA) 30 MIN</td>
+                        <td>170,00 kn</td>
+                    </tr>
+                    <tr>
+                        <td>MADEROTERAPIJA (CIJELO TIJELO) 60 MIN</td>
+                        <td>220,00 kn</td>
+                    </tr>
+                    <tr>
+                        <td>CUPPING THERAPY 30 MIN</td>
+                        <td>120,00 kn</td>
+                    </tr>
+                    <tr>
+                        <td>DRENAŽA (KOMB. ANTICEL.) 30 MIN</td>
+                        <td>120,00 kn</td>
+                    </tr>
+                    <tr>
+                        <td>LIMFNA DRENAŽA 60 MIN</td>
+                        <td>200,00 kn</td>
+                    </tr>
+                    <tr>
+                        <td>REFLEKSOLORIJA STOPALA 60 MIN</td>
+                        <td>200,00 kn</td>
+                    </tr>
+                    <tr>
+                        <td>RELAX MASSAGE 60 MIN</td>
+                        <td>170,00 kn</td>
+                    </tr>
+                    <tr>
+                        <td>SHIATSU TRETMAN 90 MIN</td>
+                        <td>250,00 kn</td>
+                    </tr>
+                    <tr>
+                        <th colspan="2" class="text-primary pt-4">PAKETI</th>
+                    </tr>
+                    <tr>
+                        <td>MADEROTERAPIJA 10X30 MIN</td>
+                        <td>1000,00 kn</td>
+                    </tr>
+                    <tr>
+                        <td>CUPPING THERAPY 5X30 MIN</td>
+                        <td>500,00 kn</td>
+                    </tr>
+                    <tr>
+                        <td>KLASIČNA MASAŽA 4X30 MIN</td>
+                        <td>300,00 kn</td>
+                    </tr>
+                    <tr>
+                        <th colspan="2" class="text-primary pt-4">NJEGA RUKU I STOPALA</th>
+                    </tr>
+                    <tr>
+                        <td>MANIKURA</td>
+                        <td>50,00 kn</td>
+                    </tr>
+                    <tr>
+                        <td>TRAJNI LAK</td>
+                        <td>100,00 kn</td>
+                    </tr>
+                    <tr>
+                        <td>LAKIRANJE (OBIČNI LAK)</td>
+                        <td>30,00 kn</td>
+                    </tr>
+                </table>
             </div>
         </div>
         <div id="section3" class="container section slideanim">
@@ -216,18 +286,21 @@
         </div>
     </div>
     <div id="section5" class="container-fluid section text-white p-5 slideanim bg-primary">
-        <div class="container">
-            <h2 class="text-white">Kontakt</h2>
+        <div>
             <div ng-controller="contactCtrl" class="row">
-                <div class="col-sm-5">
+                <div class="col-sm-3">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2805.4311005275113!2d14.466171615816156!3d45.31991645107989!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4764a0521f8189c3%3A0xd9db8ea3f531870e!2sUl.%20Drage%20Gervaisa%2039%2C%2051000%2C%20Rijeka!5e0!3m2!1shr!2shr!4v1574866403878!5m2!1shr!2shr" frameborder="0" style="border:0; width:95%; height:90%" allowfullscreen="" ></iframe>
+                </div>
+                <div class="col-sm-4">
+                    <h2 class="text-white">Kontakt</h2>
                     <label>{{config.company}}</label>
-                    <p>OIB {{config.oib}}</p>
-                    <p><i class="fa fa-home"></i> {{config.address}}</p>
+                    <!--<p>OIB: {{config.oib}}</p>-->
+                    <p><i class="fa fa-map-marker-alt"></i> {{config.address}}</p>
                     <p><a href="tel:{{config.phone}}" class="text-white"><i class="fa fa-phone"></i> {{config.phone}}</a></p>
                     <p><a href="mailto:{{config.email}}" class="text-white"><i class="far fa-envelope"></i> {{config.email}}</a></p>
                     <p><a href="{{config.url}}" class="text-white"><i class="fa fa-globe"></i> {{config.sitename}}</a></p>
                 </div>
-                <div class="col-sm-7">
+                <div class="col-sm-5">
                     <h3 ng-if="!showAlert">Pošaljite upit</h3>
                     <div ng-if="showAlert" class="alert alert-success">
                         <strong>Poruka je uspješno poslana!</strong>
@@ -283,7 +356,7 @@
                 }
             });
 
-            $(window).scroll(function () {
+            var slideanim = function () {
                 $(".slideanim").each(function () {
                     var pos = $(this).offset().top;
                     var winTop = $(window).scrollTop();
@@ -291,7 +364,22 @@
                         $(this).addClass("slide");
                     }
                 });
+            }
+            slideanim();
+
+            $(window).scroll(function () {
+                slideanim();
+                //$(".slideanim").each(function () {
+                //    var pos = $(this).offset().top;
+                //    var winTop = $(window).scrollTop();
+                //    if (pos < winTop + 600) {
+                //        $(this).addClass("slide");
+                //    }
+                //});
             });
+
+
+            
 
             //TODO:
             //$(window).scroll(function () {

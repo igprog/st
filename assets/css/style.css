@@ -5,6 +5,18 @@ style.css
  html {
       height:auto;
   }
+body {
+    font-family: 'Encode Sans Expanded';
+    font-size: 16px;
+    position: relative;
+}
+.banner {
+    background: url("../img/banner.jpg") no-repeat center center;
+    background-size: cover;
+}
+.font-beauty {
+    font-family: 'Tangerine', serif;
+}
  a {
      color: #ff6b6b;
      text-decoration: none !important;
@@ -12,85 +24,85 @@ style.css
  a:hover {
      color: #ffbb98;
  }
-  h4 {
-      font-size: 19px;
-      line-height: 1.375em;
-      color: #303030;
-      font-weight: 400;
-      margin-bottom: 30px;
-  }  
-  .navbar {
-      margin-bottom: 0;
-      background-color: #f0f6fb;
-      opacity:0.8;
-      z-index: 9999;
-      border: 0;
-      font-size: 14px !important;
-      font-weight: 800 !important;
-      line-height: 1.42857143 !important;
-      letter-spacing: 4px;
-      border-radius: 0;
-      /*font-family: Montserrat, sans-serif;*/
-  }
-  .navbar li a, .navbar .navbar-brand {
-      color: black !important;
-  }
-  .navbar-nav li a:hover, .navbar-nav li.active a {
-      color: #ff6b6b !important;
-      /*background-color: #fff !important;*/
-  }
-  .navbar-default .navbar-toggle {
-      border-color: transparent;
-      color: #fff !important;
-  }
-  footer .glyphicon {
-      font-size: 20px;
-      margin-bottom: 20px;
-      color:dodgerblue;
-  }
-  .slideanim {visibility:hidden;}
-  .slide {
-      animation-name: slide;
-      -webkit-animation-name: slide;
-      animation-duration: 1s;
-      -webkit-animation-duration: 1s;
-      visibility: visible;
-  }
-  @keyframes slide {
-    0% {
-      opacity: 0;
-      transform: translateY(70%);
-    } 
-    100% {
-      opacity: 1;
-      transform: translateY(0%);
+h4 {
+    font-size: 19px;
+    line-height: 1.375em;
+    color: #303030;
+    font-weight: 400;
+    margin-bottom: 30px;
+}  
+.navbar {
+    margin-bottom: 0;
+    background-color: #f0f6fb;
+    opacity:0.8;
+    z-index: 9999;
+    border: 0;
+    font-size: 14px !important;
+    font-weight: 800 !important;
+    line-height: 1.42857143 !important;
+    letter-spacing: 4px;
+    border-radius: 0;
+    /*font-family: Montserrat, sans-serif;*/
+}
+.navbar li a, .navbar .navbar-brand {
+    color: black !important;
+}
+.navbar-nav li a:hover, .navbar-nav li.active a {
+    color: #ff6b6b !important;
+    /*background-color: #fff !important;*/
+}
+.navbar-default .navbar-toggle {
+    border-color: transparent;
+    color: #fff !important;
+}
+footer .glyphicon {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color:dodgerblue;
+}
+.slideanim {visibility:hidden;}
+.slide {
+    animation-name: slide;
+    -webkit-animation-name: slide;
+    animation-duration: 1s;
+    -webkit-animation-duration: 1s;
+    visibility: visible;
+}
+@keyframes slide {
+0% {
+    opacity: 0;
+    transform: translateY(70%);
+} 
+100% {
+    opacity: 1;
+    transform: translateY(0%);
+}
+}
+@-webkit-keyframes slide {
+0% {
+    opacity: 0;
+    -webkit-transform: translateY(70%);
+} 
+100% {
+    opacity: 1;
+    -webkit-transform: translateY(0%);
     }
-  }
-  @-webkit-keyframes slide {
-    0% {
-      opacity: 0;
-      -webkit-transform: translateY(70%);
-    } 
-    100% {
-      opacity: 1;
-      -webkit-transform: translateY(0%);
+}
+@media screen and (max-width: 768px) {
+.col-sm-4 {
+    text-align: center;
+    margin: 25px 0;
+}
+.btn-lg {
+    width: 100%;
+    margin-bottom: 35px;
     }
-  }
-  @media screen and (max-width: 768px) {
-    .col-sm-4 {
-      text-align: center;
-      margin: 25px 0;
+}
+@media screen and (max-width: 480px) {
+.logo {
+    font-size: 150px;
     }
-    .btn-lg {
-        width: 100%;
-        margin-bottom: 35px;
-    }
-  }
-  @media screen and (max-width: 480px) {
-    .logo {
-        font-size: 150px;
-    }
-  }
+}
 
 .portfolio {
     height: 450px;
@@ -101,6 +113,17 @@ style.css
 }
 .text-primary {
     color: #ff6b6b !important;
+}
+.text-shadow {
+    /*text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;*/
+    text-shadow: 2px 2px #828181;
+}
+.btn-primary {
+    background-color: #ff6b6b !important;
+    border-color:aliceblue !important;
+}
+.color-secondary {
+    color: #ffbb98;
 }
 
 
@@ -131,18 +154,6 @@ header {
     -ms-transform: scale(1.1); /* IE 9 */
     -webkit-transform: scale(1.1); /* Safari 3-8 */
     transform: scale(1.1);
-}
-/***** Portfolio box *****/
-.text-shadow {
-    /*text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;*/
-    text-shadow: 2px 2px #828181;
-}
-.btn-primary {
-    background-color: #ff6b6b !important;
-    border-color:aliceblue !important;
-}
-.color-secondary {
-    color: #ffbb98;
 }
 
 /***** Social Share *****/
@@ -201,5 +212,9 @@ header {
   bottom: 0;
   right: 0;
   width: 100px;
+}
+
+.cursor {
+    cursor:pointer;
 }
 
