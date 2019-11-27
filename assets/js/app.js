@@ -141,6 +141,13 @@ angular.module('app', [])
     };
 })
 
+.directive('navbarDirective', () => {
+    return {
+        restrict: 'E',
+        templateUrl: './assets/partials/navbar.html'
+    };
+})
+
 .directive('allowOnlyNumbers', function () {
     return {
         restrict: 'A',
