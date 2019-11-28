@@ -48,19 +48,19 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#section1">Usluge</a>
+                    <a class="nav-link" href="#section1" title="usluge">Usluge</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#section2">Cijene</a>
+                    <a class="nav-link" href="#section2" title="cijene">Cijene</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#section3">Rezervacija</a>
+                    <a class="nav-link" href="#section3" title="rezervacija">Rezervacija</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#section4">O nama</a>
+                    <a class="nav-link" href="#section4" title="o nama">O nama</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#section5">Kontakt</a>
+                    <a class="nav-link" href="#section5" title="kontakt">Kontakt</a>
                 </li>
             </ul>
         </div>
@@ -72,8 +72,8 @@
                 <h1 class="text-uppercase">Studio Tanya Rijeka</h1>
             </div>
             <div style="font-size:26px">
-                <a href="#section3" class="btn btn-primary text-uppercase m-2" style="width:280px"><i class="fa fa-check fa-2x"></i> Rezerviraj Termin</a>
-                <a href="tel:{{config.phone}}" class="btn btn-light m-2" style="width:280px"><i class="fa fa-phone fa-2x"></i> {{config.phone}}</a>
+                <a href="#section3" class="btn btn-primary text-uppercase m-2" style="width:280px" title="rezervacija"><i class="fa fa-check fa-2x"></i> Rezerviraj Termin</a>
+                <a href="tel:{{config.phone}}" class="btn btn-light m-2" style="width:280px" title="telefon"><i class="fa fa-phone fa-2x"></i> {{config.phone}}</a>
             </div>
         </div>
     </header>
@@ -82,17 +82,17 @@
             <h2 class="text-primary">USLUGE</h2>
             <hr />
             <div class="text-uppercase" style="font-size:16px">
-                <a href="#section3" style="color:#000" class="d-none d-sm-block">
+                <a href="#section3" style="color:#000" class="d-none d-sm-block" title="usluge">
                     <h2 ng-repeat="x in config.services" ng-click="setService(x)" style="display:inline">{{x}}<strong ng-if="$index<config.services.length-1" class="text-primary">  |  </strong></h2>
                 </a>
-                <a href="#section3" style="color:#000" class="d-block d-sm-none">
+                <a href="#section3" style="color:#000" class="d-block d-sm-none" title="usluge">
                     <h2 ng-repeat="x in config.services" ng-click="setService(x)">{{x}}</h2>
                 </a>
             </div>
             <hr />
             <div>
                 <div>
-                    <img src="assets/img/terapijska-masaza.jpg" class="img-thumbnail" style="width:500px" />
+                    <img src="assets/img/terapijska-masaza.jpg" class="img-thumbnail" alt="terapijska-masaza" style="width:500px" />
                 </div>
                 <div>
                     <h2 class="text-uppercase mt-2">Terapijska masaža</h2>
@@ -102,72 +102,42 @@
             <div style="margin-top:40px" class="slideanim">
                 <div class="row mt-2 p-3 text-center" style="overflow:hidden">
                     <div class="col-lg-4 p-2">
-                        <div class="card shadow zoom bg-light" style="min-height:480px">
-                            <a href="refleksoterapijska-masaza-stopala.html">
-                                <img class="card-img-top" src="../assets/img/refleksoterapijska-masaza-stopala.jpg" alt="studio tanya">
-                                <div class="card-body">
-                                    <h4 class="card-title">REFLEKSOTERAPIJSKA MASAŽA STOPALA</h4>
-                                    <p class="card-text">Refleksoterapija je danas jedna od najpopularnijih oblika komplementar...</p>
-                                </div>
-                            </a>
-                        </div>
+                        <card-directive service="'REFLEKSOTERAPIJSKA MASAŽA STOPALA'"
+                                        desc="'Refleksoterapija je danas jedna od najpopularnijih oblika komplementar'"
+                                        link="'refleksoterapijska-masaza-stopala'">
+                        </card-directive>
                     </div>
                     <div class="col-lg-4 p-2">
-                        <div class="card shadow zoom bg-light" style="min-height:480px">
-                            <a href="maderoterapija-i-anticelulitna-masaza.html">
-                                <img class="card-img-top" src="../assets/img/maderoterapija.jpg" alt="studio tanya">
-                                <div class="card-body">
-                                    <h4 class="card-title">MADEROTERAPIJA I ANTICELULITNA MASAŽA (kombinacija)</h4>
-                                    <p class="card-text">Izrazito popularna terapija sa drvenim valjcima(oklagijama) čiji je fo...</p>
-                                </div>
-                            </a>
-                        </div>
+                        <card-directive service="'MADEROTERAPIJA I ANTICELULITNA MASAŽA (kombinacija)'"
+                                        desc="'Izrazito popularna terapija sa drvenim valjcima(oklagijama) čiji je fo'"
+                                        link="'maderoterapija-i-anticelulitna-masaza'">
+                        </card-directive>
                     </div>
                     <div class="col-lg-4 p-2">
-                        <div class="card shadow zoom bg-light" style="min-height:480px">
-                            <a href="cupping-terapija.html">
-                                <img class="card-img-top" src="../assets/img/cupping-terapija.jpg" alt="studio tanya">
-                                <div class="card-body">
-                                    <h4 class="card-title">CUPPING TERAPIJA</h4>
-                                    <p class="card-text">Cupping terapija koristi se diljem svijeta te ima dugu i plemenitu pov...</p>
-                                </div>
-                            </a>
-                        </div>
+                        <card-directive service="'CUPPING TERAPIJA'"
+                                        desc="'Cupping terapija koristi se diljem svijeta te ima dugu i plemenitu pov'"
+                                        link="'cupping-terapija'">
+                        </card-directive>
                     </div>
                 </div>
                 <div class="row mt-2 p-3 text-center">
                     <div class="col-lg-4 p-2">
-                        <div class="card shadow zoom bg-light" style="min-height:480px">
-                            <a href="cupping-terapija-lica.html">
-                                <img class="card-img-top" src="../assets/img/cupping-terapija-lica.jpg" alt="studio tanya">
-                                <div class="card-body">
-                                    <h4 class="card-title">CUPPING TERAPIJA LICA</h4>
-                                    <p class="card-text">Cupping terapija lica je potpuno prirodna alternativa kirurškom faceli...</p>
-                                </div>
-                            </a>
-                        </div>
+                        <card-directive service="'CUPPING TERAPIJA LICA'"
+                                        desc="'Cupping terapija lica je potpuno prirodna alternativa kirurškom faceli'"
+                                        link="'cupping-terapija-lica'">
+                        </card-directive>
                     </div>
                     <div class="col-lg-4 p-2">
-                        <div class="card shadow zoom bg-light" style="min-height:480px">
-                            <a href="klasicna-masaza.html">
-                                <img class="card-img-top" src="../assets/img/klasicna-masaza.jpg" alt="studio tanya">
-                                <div class="card-body">
-                                    <h4 class="card-title">KLASIČNA MASAŽA</h4>
-                                    <p class="card-text">Klasična masaža jedna je od najstarijih metoda otklanjanja bolova i op...</p>
-                                </div>
-                            </a>
-                        </div>
+                        <card-directive service="'KLASIČNA MASAŽA'"
+                                        desc="'Klasična masaža jedna je od najstarijih metoda otklanjanja bolova i op'"
+                                        link="'klasicna-masaza'">
+                        </card-directive>
                     </div>
                     <div class="col-lg-4 p-2">
-                        <div class="card shadow zoom bg-light" style="min-height:480px">
-                            <a href="sportska-masaza.html">
-                                <img class="card-img-top" src="../assets/img/sportska-masaza.jpg" alt="studio tanya">
-                                <div class="card-body">
-                                    <h4 class="card-title">SPORTSKA MASAŽA</h4>
-                                    <p class="card-text">Sportska masaža je usmjerenja na bolju prokrvljenost mišića (poboljšanj...</p>
-                                </div>
-                            </a>
-                        </div>
+                        <card-directive service="'SPORTSKA MASAŽA'"
+                                        desc="'Sportska masaža je usmjerenja na bolju prokrvljenost mišića (poboljšanj'"
+                                        link="'sportska-masaza'">
+                        </card-directive>
                     </div>
                 </div>
             </div>
@@ -294,9 +264,9 @@
                     <label>{{config.company}}</label>
                     <p>OIB: {{config.oib}}</p>
                     <p><i class="fa fa-map-marker-alt"></i> {{config.address}}</p>
-                    <p><a href="tel:{{config.phone}}" class="text-white"><i class="fa fa-phone"></i> {{config.phone}}</a></p>
-                    <p><a href="mailto:{{config.email}}" class="text-white"><i class="far fa-envelope"></i> {{config.email}}</a></p>
-                    <p><a href="{{config.url}}" class="text-white"><i class="fa fa-globe"></i> {{config.sitename}}</a></p>
+                    <p><a href="tel:{{config.phone}}" class="text-white" title="telefon"><i class="fa fa-phone"></i> {{config.phone}}</a></p>
+                    <p><a href="mailto:{{config.email}}" class="text-white" title="email"><i class="far fa-envelope"></i> {{config.email}}</a></p>
+                    <p><a href="{{config.url}}" class="text-white" title="url"><i class="fa fa-globe"></i> {{config.sitename}}</a></p>
                 </div>
                 <div class="col-lg-5 p-3">
                     <div ng-if="loading" class="text-center">

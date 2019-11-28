@@ -86,10 +86,6 @@ angular.module('app', [])
 .controller('contactCtrl', ['$scope', '$http', '$rootScope', 'f', function ($scope, $http, $rootScope, f) {
     var webService = 'Contact';
     $scope.loading = false;
-    //$scope.showAlert = false;
-    //$scope.sendicon = 'far fa-envelope';
-    //$scope.sendicontitle = 'Pošalji';
-
     var init = () => {
         f.post(webService, 'Init', {}).then((d) => {
             $scope.d = d;
@@ -97,47 +93,12 @@ angular.module('app', [])
     }
     init();
 
-    //$scope.d = {
-    //    name: '',
-    //    email: '',
-    //    message: ''
-    //}
-
     $scope.send = function (d) {
-        //$scope.isSendButtonDisabled = true;
-        //$scope.sendicon = 'fa fa-spinner fa-spin';
-        //$scope.sendicontitle = 'Šaljem';
         $scope.loading = true;
         f.post(webService, 'Send', { x: d }).then((d) => {
             $scope.d = d;
             $scope.loading = false;
-            //alert(d.msg);
         })
-
-       // $http({
-       //     url: '../Mail.asmx/Send', method: 'POST',
-       //     data: { name: d.name, email: d.email, messageSubject: 'Upit', message: d.message }
-       // }).then(function (response) {
-       //    if (response.data.d == 'sent') {
-       //        $scope.showAlert = true;
-       //        $scope.sendicon = 'far fa-envelope';
-       //        $scope.sendicontitle = 'Pošalji';
-       //        window.location.hash = 'contact';
-       //    } else {
-       //        $scope.showAlert = false;
-       //        $scope.sendicon = 'far fa-envelope';
-       //        $scope.sendicontitle = 'Pošalji';
-       //        alert(response.data.d);
-       //    }
-       //},
-       //function (response) {
-       //    $scope.showAlert = false;
-       //    $scope.sendicon = 'far fa-envelope';
-       //    $scope.sendicontitle = 'Pošalji';
-       //    alert(response.data.d);
-       //});
-
-
     }
 
 }])
@@ -169,7 +130,22 @@ angular.module('app', [])
 .directive('navbarDirective', () => {
     return {
         restrict: 'E',
+        scope: {
+            site: '='
+        },
         templateUrl: './assets/partials/navbar.html'
+    };
+})
+
+.directive('cardDirective', () => {
+    return {
+        restrict: 'E',
+        scope: {
+            service: '=',
+            desc: '=',
+            link: '='
+        },
+        templateUrl: './assets/partials/card.html'
     };
 })
 
