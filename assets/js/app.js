@@ -3,6 +3,16 @@ app.js
 (c) 2019 IG PROG, www.igprog.hr
 */
 angular.module('app', [])
+.config(['$httpProvider', ($httpProvider) => {
+    //*******************disable catche**********************
+    if (!$httpProvider.defaults.headers.get) {
+        $httpProvider.defaults.headers.get = {};
+    }
+    $httpProvider.defaults.headers.get['If-Modified-Since'] = 'Mon, 26 Jul 1997 05:00:00 GMT';
+    $httpProvider.defaults.headers.get['Cache-Control'] = 'no-cache';
+    $httpProvider.defaults.headers.get['Pragma'] = 'no-cache';
+    //*******************************************************
+}])
 
 .factory('f', ['$http', ($http) => {
     return {

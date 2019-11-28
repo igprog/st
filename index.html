@@ -33,7 +33,7 @@
     <script src="assets/js/vendor/angular-animate.min.js"></script>
     <script src="assets/js/vendor/angular-aria.min.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Encode Sans Expanded' rel='stylesheet'>
-    <link href="https://fonts.googleapis.com/css?family=Tangerine" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
 </head>
 <body id="home" ng-app="app" ng-controller="appCtrl" data-spy="scroll" data-target=".navbar" data-offset="60" ng-cloak>
     <nav class="navbar navbar-expand-lg navbar-light fixed-top">
@@ -68,18 +68,18 @@
     <header class="bg-primary banner">
         <div class="container text-white font-weight-bold text-center" style="padding:140px 0 140px 0">
             <div class="text-shadow">
-                <h2 class="font-beauty" style="font-size:70px">Studio za masažu i njegu tijela</h2>
-                <h1 style="font-size:70px" class="text-uppercase">Studio Tanya Rijeka</h1>
+                <h2 class="font-beauty">Studio za masažu i njegu tijela</h2>
+                <h1 class="text-uppercase">Studio Tanya Rijeka</h1>
             </div>
             <div style="font-size:26px">
-                <a href="#section3" class="btn btn-primary text-uppercase"><i class="fa fa-check fa-2x"></i> Rezerviraj Termin</a>
-                <a href="tel:{{config.phone}}" class="btn btn-light"><i class="fa fa-phone fa-2x"></i> {{config.phone}}</a>
+                <a href="#section3" class="btn btn-primary text-uppercase m-2" style="width:280px"><i class="fa fa-check fa-2x"></i> Rezerviraj Termin</a>
+                <a href="tel:{{config.phone}}" class="btn btn-light m-2" style="width:280px"><i class="fa fa-phone fa-2x"></i> {{config.phone}}</a>
             </div>
         </div>
     </header>
     <div class="text-center p-3">
         <div id="section1" class="container section">
-            <h2>Usluge</h2>
+            <h2 class="text-primary">USLUGE</h2>
             <hr />
             <div class="text-uppercase" style="font-size:16px">
                 <a href="#section3" style="color:#000" class="d-none d-sm-block">
@@ -95,8 +95,8 @@
                     <img src="assets/img/terapijska-masaza.jpg" class="img-thumbnail" style="width:500px" />
                 </div>
                 <div>
-                    <h2 class="text-uppercase">Terapijska masaža</h2>
-                    <p class="lead">Čovjek je socijalno biće koje živi u zajednici, iz tog razloga ima želju za povezivanjem na fizičkoj, emocionalnoj i duhovnoj razini. Terapeutskom masažom osim izbacivanja raznih toksina iz tijela potičemo uravnoteženje tijela, duha i emocija.</p>
+                    <h2 class="text-uppercase mt-2">Terapijska masaža</h2>
+                    <p class="lead text-justify">Čovjek je socijalno biće koje živi u zajednici, iz tog razloga ima želju za povezivanjem na fizičkoj, emocionalnoj i duhovnoj razini. Terapeutskom masažom osim izbacivanja raznih toksina iz tijela potičemo uravnoteženje tijela, duha i emocija.</p>
                 </div>
             </div>
             <div style="margin-top:40px" class="slideanim">
@@ -173,7 +173,7 @@
             </div>
         </div>
         <div id="section2" class="container section slideanim">
-            <h2>Cjenik Usluga</h2>
+            <h2 class="text-primary">CJENIK USLUGA</h2>
             <div class="tavle-responsive text-left">
                 <table class="table table-condensed">
                     <tr>
@@ -270,14 +270,14 @@
         </div>
         <div id="section3" class="container section slideanim">
             <div class="row justify-content-center">
-                <div class="col-lg-8">
+                <div class="col-lg-6">
                     <ng-include src="'./assets/partials/reservation.html'"></ng-include>
                 </div>
             </div>
         </div>
 
         <div id="section4" class="container section slideanim">
-            <h2>O nama</h2>
+            <h2 class="text-primary">O NAMA</h2>
             <hr />
             <div>
                 <img src="assets/img/logo.png" class="rounded-circle img-thumbnail shadow" style="width:300px" />
@@ -286,10 +286,10 @@
     </div>
     <div id="section5" class="container-fluid section text-white p-5 slideanim bg-primary">
         <div ng-controller="contactCtrl" class="row">
-                <div class="col-sm-3">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2805.4311005275113!2d14.466171615816156!3d45.31991645107989!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4764a0521f8189c3%3A0xd9db8ea3f531870e!2sUl.%20Drage%20Gervaisa%2039%2C%2051000%2C%20Rijeka!5e0!3m2!1shr!2shr!4v1574866403878!5m2!1shr!2shr" frameborder="0" style="border:0; width:95%; height:90%" allowfullscreen="" ></iframe>
+                <div class="col-lg-3 p-3">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2805.4311005275113!2d14.466171615816156!3d45.31991645107989!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4764a0521f8189c3%3A0xd9db8ea3f531870e!2sUl.%20Drage%20Gervaisa%2039%2C%2051000%2C%20Rijeka!5e0!3m2!1shr!2shr!4v1574866403878!5m2!1shr!2shr" frameborder="0" style="border:0; width:100%; height:100%" allowfullscreen="" ></iframe>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-lg-4 p-3">
                     <h2 class="text-white">Kontakt</h2>
                     <label>{{config.company}}</label>
                     <p>OIB: {{config.oib}}</p>
@@ -298,7 +298,7 @@
                     <p><a href="mailto:{{config.email}}" class="text-white"><i class="far fa-envelope"></i> {{config.email}}</a></p>
                     <p><a href="{{config.url}}" class="text-white"><i class="fa fa-globe"></i> {{config.sitename}}</a></p>
                 </div>
-                <div class="col-sm-5">
+                <div class="col-lg-5 p-3">
                     <div ng-if="loading" class="text-center">
                         <i class="fa fa-spinner fa-pulse fa-5x fa-fw text-white"></i>
                     </div>
