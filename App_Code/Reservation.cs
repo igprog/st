@@ -20,6 +20,7 @@ public class Reservation : System.Web.Services.WebService {
         public string time;
         public string name;
         public string phone;
+        public string email;
         public Mail.Response response;
     }
 
@@ -31,6 +32,7 @@ public class Reservation : System.Web.Services.WebService {
         x.time = null;
         x.name = null;
         x.phone = null;
+        x.email = null;
         x.response = new Mail.Response();
         x.response.isSent = false;
         x.response.msg = null;
@@ -44,7 +46,8 @@ public class Reservation : System.Web.Services.WebService {
 <p>Datum: {1}</p>
 <p>Vrijeme: {2}</p>
 <p>Ime: {3}</p>
-<p>Telefon: <a href=""tel:{4}"" style=""color:#ff6b6b"">&#9742; {4}</a></p>", x.service, x.date, x.time, x.name, x.phone);
+<p>Telefon: <a href=""tel:{4}"" style=""color:#ff6b6b"">&#9742; {4}</a></p>
+<p>E-mail: <a href=""mailto:{5}?Subject=Studio Tanya"" style=""color:#ff6b6b"">&#9993; {5}</a></p>", x.service, x.date, x.time, x.name, x.phone, x.email);
         Mail m = new Mail();
         x.response = m.SendMail(G.email, "Novi upit", subject);
         return JsonConvert.SerializeObject(x, Formatting.None);
