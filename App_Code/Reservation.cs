@@ -25,7 +25,8 @@ public class Reservation : System.Web.Services.WebService {
         public string name;
         public string phone;
         public string email;
-        public int confirmed;
+        public bool confirmed;
+        public bool accept;
         public Mail.Response response;
     }
 
@@ -39,7 +40,8 @@ public class Reservation : System.Web.Services.WebService {
         x.name = null;
         x.phone = null;
         x.email = null;
-        x.confirmed = 0;
+        x.confirmed = false;
+        x.accept = false;
         x.response = new Mail.Response();
         x.response.isSent = false;
         x.response.msg = null;
@@ -52,32 +54,37 @@ public class Reservation : System.Web.Services.WebService {
         db.CreateDataBase(null, db.reservation);
         List<NewReservation> xx = new List<NewReservation>();
         try {
-            using (SQLiteConnection connection = new SQLiteConnection("Data Source=" + db.GetDataBasePath(G.dataBase))) {
-                connection.Open();
-                string sql = "SELECT rowid, service, serviceDate, serviceTime, name, phone, email, confirmed FROM reservation";
-                using (SQLiteCommand command = new SQLiteCommand(sql, connection)) {
-                    using (SQLiteDataReader reader = command.ExecuteReader()) {
-                        xx = new List<NewReservation>();
-                        while (reader.Read()) {
-                            NewReservation x = new NewReservation();
-                            x.id = G.ReadI(reader, 0);
-                            x.service = G.ReadS(reader, 1);
-                            x.date = G.ReadS(reader, 2);
-                            x.time = G.ReadS(reader, 3);
-                            x.name = G.ReadS(reader, 4);
-                            x.phone = G.ReadS(reader, 5);
-                            x.email = G.ReadS(reader, 6);
-                            x.confirmed = G.ReadI(reader, 7);
-                            xx.Add(x);
-                        }
-                    }
-                }  
-                connection.Close();
-            }
-            return JsonConvert.SerializeObject(xx, Formatting.None);
+            return JsonConvert.SerializeObject(LoadData(), Formatting.None);
         } catch (Exception e) { return e.Message; }
     }
 
+    public List<NewReservation> LoadData() {
+        db.CreateDataBase(null, db.reservation);
+        List<NewReservation> xx = new List<NewReservation>();
+        using (SQLiteConnection connection = new SQLiteConnection("Data Source=" + db.GetDataBasePath(G.dataBase))) {
+            connection.Open();
+            string sql = "SELECT rowid, service, serviceDate, serviceTime, name, phone, email, confirmed FROM reservation ORDER BY rowid DESC";
+            using (SQLiteCommand command = new SQLiteCommand(sql, connection)) {
+                using (SQLiteDataReader reader = command.ExecuteReader()) {
+                    xx = new List<NewReservation>();
+                    while (reader.Read()) {
+                        NewReservation x = new NewReservation();
+                        x.id = G.ReadI(reader, 0);
+                        x.service = G.ReadS(reader, 1);
+                        x.date = G.ReadS(reader, 2);
+                        x.time = G.ReadS(reader, 3);
+                        x.name = G.ReadS(reader, 4);
+                        x.phone = G.ReadS(reader, 5);
+                        x.email = G.ReadS(reader, 6);
+                        x.confirmed = G.ReadB(reader, 7);
+                        xx.Add(x);
+                    }
+                }
+            }
+            connection.Close();
+        }
+        return xx;
+    }
 
     [WebMethod]
     public string Send(NewReservation x) {
@@ -111,6 +118,25 @@ public class Reservation : System.Web.Services.WebService {
             connection.Close();
         }
     }
+
+
+    [WebMethod]
+    public string UpdateInquery(NewReservation x) {
+        try {
+            using (SQLiteConnection connection = new SQLiteConnection("Data Source=" + db.GetDataBasePath(G.dataBase))) {
+                connection.Open();
+                string sql = string.Format(@"UPDATE reservation SET confirmed = '{1}' WHERE rowid = {0}"
+                        , x.id, x.confirmed);
+                using (SQLiteCommand command = new SQLiteCommand(sql, connection)) {
+                    command.ExecuteNonQuery();
+                }
+                connection.Close();
+            }
+            return JsonConvert.SerializeObject(LoadData(), Formatting.None);
+        } catch (Exception e) { return e.Message; }
+    }
+
+
 
 
 }

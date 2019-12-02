@@ -18,11 +18,31 @@
     <script src="assets/js/vendor/aui-min.js"></script>
     <script src="assets/js/vendor/moment.js"></script>
     <script src="assets/js/vendor/ui-scheduler-event-recorder.js"></script>
+    <script src="assets/js/vendor/ngStorage.min.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Encode Sans Expanded' rel='stylesheet'>
 </head>
-<body id="home" ng-app="app" ng-controller="appCtrl" data-spy="scroll" data-target=".navbar" data-offset="60" ng-cloak>
-    <navbar-directive site="config.sitename"></navbar-directive>
-    <div ng-controller="adminCtrl" class="container" style="margin-top:100px">
+<body id="home" ng-app="app" ng-controller="adminCtrl" data-spy="scroll" data-target=".navbar" data-offset="60" ng-cloak>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div>
+            <a href="index.html" title="studiotanya.hr">
+                <img src="../assets/img/logo.png" style="height:60px" alt="studio tanya" />
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html" title="naslovna">Naslovna</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="" title="odjava" ng-click="logout()">Odjava</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container" style="margin-top:100px">
         <div ng-if="!d.isLogin" class="row justify-content-center" style="margin-top:200px">
             <div class="col-sm-6 shadow p-5">
                 <h2>Administracija</h2>
@@ -45,7 +65,7 @@
             <div class="card">
                 <h4 class="card-header">Upiti</h4>
                 <div class="card-body">
-                    <div class="teble-responsive">
+                    <div class="table-responsive" style="max-height:250px">
                         <table class="table table-condensed">
                             <tr>
                                 <th>id</th>
@@ -57,15 +77,15 @@
                                 <th>Email</th>
                                 <th>Potvrđeno</th>
                             </tr>
-                            <tr ng-repeat="x in d.inquiries">
+                            <tr ng-repeat="x in d.inquiries track by $index">
                                 <td>{{x.id}}</td>
                                 <td>{{x.service}}</td>
                                 <td>{{x.date}}</td>
                                 <td>{{x.time}}</td>
                                 <td>{{x.name}}</td>
-                                <td>{{x.phone}}</td>
-                                <td>{{x.email}}</td>
-                                <td>{{x.confirmed}}</td>
+                                <td><a href="tel:{{x.phone}}" title="telefon" class="text-success"><i class="fa fa-phone"></i> {{x.phone}}</a></td>
+                                <td><a href="mailto:{{x.email}}" title="email" class="text-primary"><i class="far fa-envelope"></i> {{x.email}}</a></td>
+                                <td><input ng-model="x.confirmed" type="checkbox" value="" ng-click="updateInquery(x)"></td>
                             </tr>
                         </table>
                     </div>
@@ -79,8 +99,6 @@
             </div>
         </div>
     </div>
-
     <script src="assets/js/app.js"></script>
-    
 </body>
 </html>

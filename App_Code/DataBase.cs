@@ -35,7 +35,7 @@ public class DataBase {
                     name NVARCHAR(200),
                     phone NVARCHAR(50),
                     email NVARCHAR(50),
-                    confirmed INTEGER)";
+                    confirmed NVARCHAR(50))";
             CreateTable(path, sql);
         }
 

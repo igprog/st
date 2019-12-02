@@ -43,6 +43,9 @@
                         <label>Email:</label>
                         <input ng-model="d.email" type="text" class="form-control">
                     </div>
+                    <div>
+                        <label class="checkbox-inline"><input ng-model="d.accept" type="checkbox" value=""> Prihvaćam <a href="../uvjeti-koristenja.html" target="_blank">uvjete korištenja</a>.</label>
+                    </div>
                     <button type="submit" class="btn btn-primary" ng-click="send(d, service)"><i class="fa fa-paper-plane"></i> Pošalji</button>
                 </div>
             </form>
@@ -51,7 +54,7 @@
             </div>
         </div>
         <div ng-if="d.response.isSent" class="alert alert-success">
-            <strong>Rezervacija zaprimljena</strong>. Potvrditi ćemo Vašu rezervaciju putem mobitela.
+            <strong>Rezervacija zaprimljena</strong>. Potvrditi ćemo Vašu rezervaciju putem mobitela ili maila.
         </div>
     </div>
 </div>

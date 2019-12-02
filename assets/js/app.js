@@ -2,7 +2,7 @@
 app.js
 (c) 2019 IG PROG, www.igprog.hr
 */
-angular.module('app', [])
+angular.module('app', ['ngStorage'])
 .config(['$httpProvider', ($httpProvider) => {
     //*******************disable catche**********************
     if (!$httpProvider.defaults.headers.get) {
@@ -58,7 +58,6 @@ angular.module('app', [])
 .controller('reservationCtrl', ['$scope', '$http', '$rootScope', 'f', function ($scope, $http, $rootScope, f) {
     var webService = 'Reservation';
     $scope.loading = false;
-    //$scope.service = $rootScope.service;
     $scope.config = $rootScope.config;
 
     var init = () => {
@@ -70,6 +69,10 @@ angular.module('app', [])
     init();
 
     $scope.send = (d, service) => {
+        if (!d.accept) {
+            alert('Morate prihvatiti uvjete korištenja.');
+            return false;
+        }
         if (service !== null) {
             d.service = service;
         }
@@ -103,14 +106,15 @@ angular.module('app', [])
 
 }])
 
-.controller('adminCtrl', ['$scope', '$http', 'f', ($scope, $http, f) => {
+.controller('adminCtrl', ['$scope', '$http', 'f', '$sessionStorage', ($scope, $http, f, $sessionStorage) => {
+    var isLogin = $sessionStorage.islogin !== undefined ? $sessionStorage.islogin : false;
     var service = 'Admin';
     var data = {
         admin: {
             userName: null,
             password: null
         },
-        isLogin: false,
+        isLogin: isLogin,
         inquiries: null
     }
     $scope.d = data;
@@ -121,24 +125,36 @@ angular.module('app', [])
         });
     }
 
+    if (isLogin) {
+        loadInquiries();
+    }
+
     $scope.login = (x) => {
         f.post(service, 'Login', { username: x.userName, password: x.password }).then((d) => {
             $scope.d.isLogin = d;
+            $sessionStorage.islogin = d;
             if (d == true) {
                 loadInquiries();
             }
         });
     }
 
+    $scope.logout = () => {
+        $scope.d.isLogin = false;
+        $sessionStorage.islogin = null;
+    };
 
+    $scope.updateInquery = (x) => {
+        f.post('Reservation', 'UpdateInquery', { x: x }).then((d) => {
+            $scope.d.inquiries = d;
+        });
+    }
 
 }])
 
 .controller("schedulerCtrl", ['$scope', '$http', '$rootScope', '$timeout', 'f', function ($scope, $http, $rootScope, $timeout, f) {
     var service = 'Scheduler';
-    //$scope.id = '#myScheduler';
     $scope.room = 0;
-    //$scope.uid = $rootScope.user.userId;
 
     var showScheduler = function () {
         YUI().use('aui-scheduler', function (Y) {
@@ -160,11 +176,9 @@ angular.module('app', [])
                 }
             });
 
-            //$scope.id = $scope.uid == null ? 'myScheduler' : $scope.uid;
-
             new Y.Scheduler({
                 activeView: weekView,
-                boundingBox: '#myScheduler', // '#' + $scope.id,
+                boundingBox: '#myScheduler',
                 date: new Date(),
                 eventRecorder: eventRecorder,
                 items: $rootScope.events,
@@ -184,21 +198,6 @@ angular.module('app', [])
         });
     }
 
-    //var getUsers = function () {
-    //    $http({
-    //        url: $sessionStorage.config.backend + 'Users.asmx/GetUsersByUserGroup',
-    //        method: 'POST',
-    //        data: { userGroupId: $rootScope.user.userGroupId }
-    //    })
-    //    .then(function (response) {
-    //        $scope.users = JSON.parse(response.data.d);
-    //        $scope.getSchedulerEvents($rootScope.user.userId);
-    //    },
-    //    function (response) {
-    //        functions.alert($translate.instant(response.data.d));
-    //    });
-    //};
-
     $scope.getSchedulerEvents = function (uid) {
         f.post(service, 'GetSchedulerEvents', { room: $scope.room, uid: uid }).then((d) => {
             $rootScope.events = d;
@@ -206,30 +205,13 @@ angular.module('app', [])
                 showScheduler();
             }, 200);
         });
-
-
-        //$http({
-        //    url: $sessionStorage.config.backend + webService + '/GetSchedulerEvents',
-        //    method: 'POST',
-        //    data: { user: $rootScope.user, room: $scope.room, uid: uid }
-        //})
-        //.then(function (response) {
-        //    $rootScope.events = JSON.parse(response.data.d);
-        //    $timeout(function () {
-        //        showScheduler();
-        //    }, 200);
-        //},
-        //function (response) {
-        //    functions.alert($translate.instant(response.data.d));
-        //});
     };
-    //getUsers();
     $scope.getSchedulerEvents(null);
 
     var addEvent = function (x, event) {
         $rootScope.events.push({
             room: $scope.room,
-            clientId: null,  // << TODO
+            clientId: null,
             content: event.details[0].newSchedulerEvent.changed.content,
             endDate: x.endDate,
             startDate: x.startDate,
@@ -259,30 +241,9 @@ angular.module('app', [])
     }
 
     var save = function (x) {
-        //if ($rootScope.user.licenceStatus == 'demo') {
-        //    functions.demoAlert('the saving function is disabled in demo version');
-        //    return false;
-        //}
-        //if ($rootScope.user.userType < 1) {
-        //    functions.demoAlert('this function is available only in standard and premium package');
-        //    return false;
-        //}
-
         f.post(service, 'Save', { userGroupId: null, userId: null, x: x }).then((d) => {
             getAppointmentsCountByUserId();
         });
-
-        //$http({
-        //    url: $sessionStorage.config.backend + webService + '/Save',
-        //    method: "POST",
-        //    data: { userGroupId: $rootScope.user.userGroupId, userId: $rootScope.user.userId, x: x }
-        //})
-        //.then(function (response) {
-        //    getAppointmentsCountByUserId();
-        //},
-        //function (response) {
-        //    functions.alert($translate.instant(response.data.d));
-        //});
     }
 
     var removeEvent = function (x, event) {
@@ -300,62 +261,7 @@ angular.module('app', [])
         f.post(service, 'Delete', { userGroupId: null, userId: null, x: x }).then((d) => {
             getAppointmentsCountByUserId();
         });
-
-        //$http({
-        //    url: $sessionStorage.config.backend + webService + '/Delete',
-        //    method: "POST",
-        //    data: { userGroupId: $rootScope.user.userGroupId, userId: $rootScope.user.userId, x: x }
-        //})
-        //.then(function (response) {
-        //    getAppointmentsCountByUserId();
-        //},
-        //function (response) {
-        //    functions.alert($translate.instant(response.data));
-        //});
     }
-
-    //$scope.toggleTpl = function (x) {
-    //    $rootScope.currTpl = './assets/partials/' + x + '.html';
-    //};
-
-    //var getAppointmentsCountByUserId = function () {
-    //    $http({
-    //        url: $sessionStorage.config.backend + webService + '/GetAppointmentsCountByUserId',
-    //        method: 'POST',
-    //        data: { userGroupId: $rootScope.user.userGroupId, userId: $rootScope.user.userId },
-    //    }).then(function (response) {
-    //        $rootScope.user.datasum.scheduler = JSON.parse(response.data.d);
-    //    },
-    //    function (response) {
-    //        functions.alert($translate.instant(response.data.d));
-    //    });
-    //}
-
-    //var removeAllEvents = function () {
-    //    $http({
-    //        url: $sessionStorage.config.backend + webService + '/RemoveAllEvents',
-    //        method: 'POST',
-    //        data: { userGroupId: $rootScope.user.userGroupId },
-    //    }).then(function (response) {
-    //        $scope.uid = null;
-    //        getAppointmentsCountByUserId();
-    //        $scope.toggleTpl('dashboard');
-    //    },
-    //    function (response) {
-    //        functions.alert($translate.instant(response.data.d));
-    //    });
-    //}
-
-    //$scope.removeAllEvents = function () {
-    //    var confirm = $mdDialog.confirm()
-    //            .title($translate.instant('remove all events') + '?')
-    //            .ok($translate.instant('yes') + '!')
-    //            .cancel($translate.instant('no'));
-    //    $mdDialog.show(confirm).then(function () {
-    //        removeAllEvents();
-    //    }, function () {
-    //    });
-    //}
 
 }])
 
