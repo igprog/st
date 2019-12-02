@@ -115,13 +115,16 @@ angular.module('app', ['ngStorage'])
             password: null
         },
         isLogin: isLogin,
-        inquiries: null
+        inquiries: null,
+        loading: false
     }
     $scope.d = data;
 
     var loadInquiries = () => {
+        $scope.d.loading = true;
         f.post('Reservation', 'Load', {}).then((d) => {
             $scope.d.inquiries = d;
+            $scope.d.loading = false;
         });
     }
 
@@ -145,8 +148,10 @@ angular.module('app', ['ngStorage'])
     };
 
     $scope.updateInquery = (x) => {
+        $scope.d.loading = true;
         f.post('Reservation', 'UpdateInquery', { x: x }).then((d) => {
             $scope.d.inquiries = d;
+            $scope.d.loading = false;
         });
     }
 
@@ -308,6 +313,20 @@ angular.module('app', ['ngStorage'])
             link: '='
         },
         templateUrl: './assets/partials/card.html'
+    };
+})
+
+.directive('loadingDirective', () => {
+    return {
+        restrict: 'E',
+        scope: {
+            btntitle: '=',
+            loadingtitle: '=',
+            value: '=',
+            pdf: '=',
+            size: '='
+        },
+        templateUrl: './assets/partials/loading.html'
     };
 })
 

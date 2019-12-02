@@ -36,7 +36,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="index.html" title="naslovna">Naslovna</a>
                 </li>
-                <li class="nav-item">
+                <li ng-if="d.isLogin" class="nav-item">
                     <a class="nav-link" href="" title="odjava" ng-click="logout()">Odjava</a>
                 </li>
             </ul>
@@ -65,10 +65,11 @@
             <div class="card">
                 <h4 class="card-header">Upiti</h4>
                 <div class="card-body">
-                    <div class="table-responsive" style="max-height:250px">
+                    <loading-directive loadingtitle="'Učitavanje...'" value="d.loading" size="5"></loading-directive>
+                    <div ng-if="d.inquiries.length>0&&!d.loading" class="table-responsive" style="max-height:250px">
                         <table class="table table-condensed">
                             <tr>
-                                <th>id</th>
+                                <th>R. br.</th>
                                 <th>Usluga</th>
                                 <th>Ime</th>
                                 <th>Datum</th>
@@ -80,9 +81,9 @@
                             <tr ng-repeat="x in d.inquiries track by $index">
                                 <td>{{x.id}}</td>
                                 <td>{{x.service}}</td>
+                                <td>{{x.name}}</td>
                                 <td>{{x.date}}</td>
                                 <td>{{x.time}}</td>
-                                <td>{{x.name}}</td>
                                 <td><a href="tel:{{x.phone}}" title="telefon" class="text-success"><i class="fa fa-phone"></i> {{x.phone}}</a></td>
                                 <td><a href="mailto:{{x.email}}" title="email" class="text-primary"><i class="far fa-envelope"></i> {{x.email}}</a></td>
                                 <td><input ng-model="x.confirmed" type="checkbox" value="" ng-click="updateInquery(x)"></td>

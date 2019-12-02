@@ -247,7 +247,7 @@
                 </div>
             </div>
         </div>
-        <div id="section4" class="container section slideanim">
+        <!--<div id="section4" class="container section slideanim">
             <h2 class="text-primary">RADNO VRIJEME</h2>
             <hr />
             <div class="row text-center">
@@ -261,16 +261,16 @@
                     SUB: Po dogovoru
                 </div>
             </div>
-        </div>
-        <div id="section5" class="container section slideanim">
+        </div>-->
+        <div id="section4" class="container section slideanim">
             <h2 class="text-primary">POKLON BON</h2>
             <hr />
-            <p class="lead text-justify text-center">Sebi ili svojoj dragoj osobi poklonite Poklon Bon</p>
+            <p class="lead text-justify text-center">Poklonite sebi ili svojoj dragoj osobi poklon bon</p>
             <div>
                 <img src="assets/img/poklon-bon.jpg" class="rounded-circle img-thumbnail shadow" style="width:300px" alt="studio tanya" />
             </div>
         </div>
-        <div id="section6" class="container section slideanim">
+        <div id="section5" class="container section slideanim">
             <!--<h2 class="text-primary">O NAMA</h2>
         <hr />-->
             <div>
@@ -285,12 +285,31 @@
                 </div>
                 <div class="col-lg-4 p-3">
                     <h2 class="text-white">Kontakt</h2>
-                    <label>{{config.company}}</label>
-                    <p>OIB: {{config.oib}}</p>
-                    <p><i class="fa fa-map-marker-alt"></i> {{config.address}}</p>
-                    <p><a href="tel:{{config.phone}}" class="text-white" title="telefon"><i class="fa fa-phone"></i> {{config.phone}}</a></p>
-                    <p><a href="mailto:{{config.email}}" class="text-white" title="email"><i class="far fa-envelope"></i> {{config.email}}</a></p>
-                    <p><a href="{{config.url}}" class="text-white" title="url"><i class="fa fa-globe"></i> {{config.sitename}}</a></p>
+                    <div>
+                        <label>{{config.company}}</label>
+                        <p>OIB: {{config.oib}}</p>
+                        <p><i class="fa fa-map-marker-alt"></i> {{config.address}}</p>
+                        <p><a href="tel:{{config.phone}}" class="text-white" title="telefon"><i class="fa fa-phone"></i> {{config.phone}}</a></p>
+                        <p><a href="mailto:{{config.email}}" class="text-white" title="email"><i class="far fa-envelope"></i> {{config.email}}</a></p>
+                        <p><a href="{{config.url}}" class="text-white" title="url"><i class="fa fa-globe"></i> {{config.sitename}}</a></p>
+                    </div>
+                    <hr />
+                    <h2>Radno vrijeme</h2>
+                    <div class="row text-center">
+                        <div class="col-sm-4">
+                            <p>PON, PET</p>
+                            <p>9-17</p>
+                        </div>
+                        <div class="col-sm-4">
+                            <p>UTO, SRI, ČET</p>
+                            <p>12-20</p>
+                        </div>
+                        <div class="col-sm-4">
+                            <p>SUB</p>
+                            <p>Po dogovoru</p>
+                        </div>
+                    </div>
+                    <hr />
                 </div>
                 <div class="col-lg-5 p-3">
                     <div ng-if="loading" class="text-center">

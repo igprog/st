@@ -48,7 +48,6 @@ public class Reservation : System.Web.Services.WebService {
         return JsonConvert.SerializeObject(x, Formatting.None);
     }
 
-
     [WebMethod]
     public string Load() {
         db.CreateDataBase(null, db.reservation);
