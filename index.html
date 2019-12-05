@@ -270,11 +270,19 @@
                 <img src="assets/img/poklon-bon.jpg" class="rounded-circle img-thumbnail shadow" style="width:300px" alt="studio tanya" />
             </div>
         </div>
-        <div id="section5" class="container section slideanim">
-            <!--<h2 class="text-primary">O NAMA</h2>
-        <hr />-->
+        <!--<div id="section5" class="container section slideanim">
+            <h2 class="text-primary">O NAMA</h2>
+            <hr />
             <div>
                 <img src="assets/img/logo.png" class="rounded-circle img-thumbnail shadow" style="width:300px" alt="studio tanya" />
+            </div>
+        </div>-->
+        <div class="container section slideanim">
+            <h2 class="text-primary">PRATITE NAS NA DRUŠTVENIM MREŽAMA</h2>
+            <hr />
+            <div>
+                <a href="{{config.follow.facebook}}" target="_blank" class="btn btn-primary btn-social" title="facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="{{config.follow.instagram}}" target="_blank" class="btn btn-primary btn-social" title="instagram"><i class="fab fa-instagram"></i></a>
             </div>
         </div>
     </div>
@@ -291,7 +299,7 @@
                         <p><i class="fa fa-map-marker-alt"></i> {{config.address}}</p>
                         <p><a href="tel:{{config.phone}}" class="text-white" title="telefon"><i class="fa fa-phone"></i> {{config.phone}}</a></p>
                         <p><a href="mailto:{{config.email}}" class="text-white" title="email"><i class="far fa-envelope"></i> {{config.email}}</a></p>
-                        <p><a href="{{config.url}}" class="text-white" title="url"><i class="fa fa-globe"></i> {{config.sitename}}</a></p>
+                        <p><a href="{{config.url}}" class="text-white" title="url"><i class="fa fa-globe"></i> www.{{config.domain}}</a></p>
                     </div>
                     <div class="text-center mt-3">
                         <h2>Radno vrijeme</h2>
@@ -349,8 +357,8 @@
                 <span class="fa fa-chevron-up fa-3x"></span>
             </a>
         </div>
-        <div class="text-right">
-            <a href="https://www.igprog.hr" title="igprog.hr" class="text-white">Copyright © {{year}} IG PROG</a>
+        <div class="text-center mt-5">
+            <p class="small text-light">Copyright © {{year}} <span class="text-uppercase">{{config.sitename}}</span> | Sva prava pridržana | Made with &#9829; by <a href="https://www.igprog.hr" title="igprog.hr" class="text-light">IG PROG</a></p>
         </div>
     </div>
     <script src="assets/js/app.js"></script>

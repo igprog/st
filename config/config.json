@@ -7,7 +7,8 @@
   "phone": "+385 95 910 9321",
   "email": "info@studiotanya.hr",
   "url": "https://www.igprog.hr",
-  "sitename": "www.studiotanya.hr",
+  "domain": "studiotanya.hr",
+  "sitename": "Studio Tanya",
   "services": [
     "Klasična masaža",
     "Sportska masaža",
@@ -20,5 +21,10 @@
     "Limfna drenaža",
     "Shiatsu tretman",
     "Njega ruku i stopala"
-  ]
+  ],
+  "follow": {
+    "facebook": "https://www.facebook.com/studiotanya.ri/?ref=br_rs",
+    "instagram": ""
+  }
+
 }
