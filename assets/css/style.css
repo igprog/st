@@ -16,7 +16,7 @@ body {
 }
 .font-beauty {
     font-family: 'Dancing Script', cursive;
-    font-size:70px !important;
+    font-size:75px !important;
 }
 a {
     color: #ff6b6b;
@@ -41,6 +41,7 @@ h4 {
 .navbar {
     margin-bottom: 0;
     background-color: #f0f6fb;
+    /*background-image: linear-gradient(to right, #626262 , #f0f6fb);*/
     opacity:0.8;
     z-index: 9999;
     border: 0;
@@ -104,10 +105,16 @@ footer .glyphicon {
     width: 100%;
     margin-bottom: 35px;
     }
+    .banner {
+        background: url("../img/banner.jpg") no-repeat left top;
+    }
 }
 @media screen and (max-width: 480px) {
-.logo {
-    font-size: 150px;
+    .logo {
+        font-size: 150px;
+    }
+    .banner {
+        background: url("../img/banner.jpg") no-repeat left top;
     }
 }
 
@@ -123,7 +130,8 @@ footer .glyphicon {
 }
 .text-shadow {
     /*text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;*/
-    text-shadow: 2px 2px #828181;
+    /*text-shadow: 2px 2px #828181;*/
+    text-shadow: 2px 2px #303030;
 }
 .btn-primary {
     background-color: #ff6b6b !important;
@@ -135,18 +143,19 @@ footer .glyphicon {
 
 
 header {
-  padding: 104px 0 100px;
+  /*padding: 140px 0 340px 0;*/
+  padding: 20vh 0 20vh 0;
 }
 
-@media (min-width: 992px) {
+/*@media (min-width: 992px) {
   header {
-    padding: 106px 0 100px;
+    padding: 140px 0 140px 0;
   }
-}
+}*/
 @media (max-width: 992px) {
-  header {
-    padding: 10px 0 100px;
-  }
+  /*header {
+    padding: 140px 0 100px 0px;
+  }*/
   .font-beauty {
      font-size:40px !important;
    }
