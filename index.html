@@ -85,7 +85,7 @@
             <hr />
             <div class="text-uppercase" style="font-size:16px">
                 <a href="#section3" style="color:#000" class="d-none d-sm-block" title="usluge">
-                    <h2 ng-repeat="x in config.services" ng-click="setService(x)" style="display:inline">{{x}}<strong ng-if="$index<config.services.length-1" class="text-primary">  |  </strong></h2>
+                    <h2 ng-repeat="x in config.services" ng-click="setService(x)" style="display:inline">{{x}}<strong ng-if="$index<config.services.length-1" class="text-primary px-1">|</strong></h2>
                 </a>
                 <a href="#section3" style="color:#000" class="d-block d-sm-none" title="usluge">
                     <h2 ng-repeat="x in config.services" ng-click="setService(x)">{{x}}</h2>
@@ -102,26 +102,6 @@
                 </div>
             </div>
             <div style="margin-top:40px" class="slideanim">
-                <div class="row mt-2 p-3 text-center" style="overflow:hidden">
-                    <div class="col-lg-4 p-2">
-                        <card-directive service="'REFLEKSOTERAPIJSKA MASAŽA STOPALA'"
-                                        desc="'Refleksoterapija je danas jedna od najpopularnijih oblika komplementar'"
-                                        link="'refleksoterapijska-masaza-stopala'">
-                        </card-directive>
-                    </div>
-                    <div class="col-lg-4 p-2">
-                        <card-directive service="'MADEROTERAPIJA I ANTICELULITNA MASAŽA (kombinacija)'"
-                                        desc="'Izrazito popularna terapija sa drvenim valjcima(oklagijama) čiji je fo'"
-                                        link="'maderoterapija-i-anticelulitna-masaza'">
-                        </card-directive>
-                    </div>
-                    <div class="col-lg-4 p-2">
-                        <card-directive service="'CUPPING TERAPIJA'"
-                                        desc="'Cupping terapija koristi se diljem svijeta te ima dugu i plemenitu pov'"
-                                        link="'cupping-terapija'">
-                        </card-directive>
-                    </div>
-                </div>
                 <div class="row mt-2 p-3 text-center">
                     <div class="col-lg-4 p-2">
                         <card-directive service="'CUPPING TERAPIJA LICA'"
@@ -142,6 +122,32 @@
                         </card-directive>
                     </div>
                 </div>
+                <div class="row mt-2 p-3 text-center" style="overflow:hidden">
+                    <div class="col-lg-3 p-2">
+                        <card-directive service="'REFLEKSOTERAPIJSKA MASAŽA STOPALA'"
+                                        desc="'Refleksoterapija je danas jedna od najpopularnijih oblika komplementar'"
+                                        link="'refleksoterapijska-masaza-stopala'">
+                        </card-directive>
+                    </div>
+                    <div class="col-lg-3 p-2">
+                        <card-directive service="'MADEROTERAPIJA I ANTICELULITNA MASAŽA (kombinacija)'"
+                                        desc="'Izrazito popularna terapija sa drvenim valjcima(oklagijama) čiji je fo'"
+                                        link="'maderoterapija-i-anticelulitna-masaza'">
+                        </card-directive>
+                    </div>
+                    <div class="col-lg-3 p-2">
+                        <card-directive service="'CUPPING TERAPIJA'"
+                                        desc="'Cupping terapija koristi se diljem svijeta te ima dugu i plemenitu pov'"
+                                        link="'cupping-terapija'">
+                        </card-directive>
+                    </div>
+                    <div class="col-lg-3 p-2">
+                        <card-directive service="'HOT STONE'"
+                                        desc="'Masaža vrućim kamenjem koristi se za opuštanje i napetih mišića i oštećenih mekih tkiva u cijelom tijelu.'"
+                                        link="'hot-stone'">
+                        </card-directive>
+                    </div>
+                </div>
             </div>
         </div>
         <div id="section2" class="container section slideanim">
@@ -157,11 +163,11 @@
                     </tr>
                     <tr>
                         <td>KLASIČNA (PARCIJALNA) 30 MIN</td>
-                        <td>100,00 kn</td>
+                        <td>120,00 kn</td>
                     </tr>
                     <tr>
                         <td>KLASIČNA (CIJELO TIJELO) 60 MIN</td>
-                        <td>180,00 kn</td>
+                        <td>200,00 kn</td>
                     </tr>
                     <tr>
                         <td>SPORTSKA (PARCIJALNA) 30 MIN</td>
@@ -177,7 +183,7 @@
                     </tr>
                     <tr>
                         <td>TERAPIJSKA (CIJELO TIJELO) 60 MIN</td>
-                        <td>170,00 kn</td>
+                        <td>200,00 kn</td>
                     </tr>
                     <tr>
                         <td>MADEROTERAPIJA (ANTICELULITNA) 30 MIN</td>
@@ -222,10 +228,10 @@
                         <td>CUPPING THERAPY 5X30 MIN</td>
                         <td>500,00 kn</td>
                     </tr>
-                    <tr>
+                    <!--<tr>
                         <td>KLASIČNA MASAŽA 4X30 MIN</td>
                         <td>300,00 kn</td>
-                    </tr>
+                    </tr>-->
                     <tr>
                         <td>4X50 MIN-MIX</td>
                         <td>600,00 kn</td>
