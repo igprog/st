@@ -1,6 +1,6 @@
 ﻿ /*!
 style.css
-(c) 2019 IG PROG, www.igprog.hr
+(c) 2019-2021 IG PROG, www.igprog.hr
 */
  html {
       height:auto;
@@ -42,7 +42,7 @@ h4 {
     margin-bottom: 0;
     background-color: #f0f6fb;
     /*background-image: linear-gradient(to right, #626262 , #f0f6fb);*/
-    opacity:0.8;
+    opacity: .95;
     z-index: 9999;
     border: 0;
     font-size: 14px !important;
@@ -97,16 +97,19 @@ footer .glyphicon {
     }
 }
 @media screen and (max-width: 768px) {
-.col-sm-4 {
-    text-align: center;
-    margin: 25px 0;
-}
-.btn-lg {
-    width: 100%;
-    margin-bottom: 35px;
+    .col-sm-4 {
+        text-align: center;
+        margin: 25px 0;
+    }
+    .btn-lg {
+        width: 100%;
+        margin-bottom: 35px;
     }
     .banner {
         background: url("../img/banner.jpg") no-repeat left top;
+    }
+    td {
+        font-size: .8em;
     }
 }
 @media screen and (max-width: 480px) {
@@ -258,5 +261,42 @@ header {
 .btn-social:hover {
     opacity: 0.7;
 }
+
+/*********** Sidenav ************/
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #ff6b6b;
+  opacity: .95;
+  overflow-x: hidden;
+  transition: .5s;
+  padding-top: 80px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 18px;
+  color: #fff;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #20708f;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 65px;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+/*********** Sidenav ************/
 
 

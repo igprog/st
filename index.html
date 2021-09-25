@@ -42,29 +42,38 @@
         <a href="index.html" title="studiotanya.hr">
             <img src="../assets/img/logo.png" style="height:60px" alt="studio tanya" />
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler" type="button" aria-label="Toggle navigation" onclick="openNav()">
+            <span class="navbar-toggler-icon">
+                <i class="fas fa-bars" style="font-size:28px;"></i>
+            </span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#section1" title="usluge">Usluge</a>
+                    <a class="nav-link" href="#usluge" title="usluge">Usluge</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#section2" title="cijene">Cijene</a>
+                    <a class="nav-link" href="#cijene" title="cijene">Cijene</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#section3" title="rezervacija">Rezervacija</a>
+                    <a class="nav-link" href="#rezervacija" title="rezervacija">Rezervacija</a>
                 </li>
-                <!--<li class="nav-item">
-                    <a class="nav-link" href="#section4" title="o nama">O nama</a>
-                </li>-->
                 <li class="nav-item">
-                    <a class="nav-link" href="#section5" title="kontakt">Kontakt</a>
+                    <a class="nav-link" href="#kontakt" title="kontakt">Kontakt</a>
                 </li>
             </ul>
         </div>
     </nav>
+    <div id="mySidenav" class="sidenav text-uppercase">
+        <div>
+            <a href="" title="Izbornik" class="font-weight-bold text-light" onclick="closeNav()">Menu</a><a href="javascript:void(0)" class="closebtn" onclick="closeNav()" title="Zatvori"><strong>&times;</strong></a>
+            <hr class="m-0 mx-4 bg-light"/>
+        </div>
+        <a href="#usluge" onclick="closeNav()" title="usluge">Usluge</a>
+        <a href="#cijene" onclick="closeNav()" title="cijene">Cijene</a>
+        <a href="#rezervacija" onclick="closeNav()" title="rezervacija">Rezervacija</a>
+        <a href="#kontakt" onclick="closeNav()" title="kontakt">Kontakt</a>
+    </div>
     <header class="banner">
         <div class="container text-white font-weight-bold text-center">
             <div class="text-shadow">
@@ -78,7 +87,7 @@
         </div>
     </header>
     <div class="text-center p-3">
-        <div id="section1" class="container section">
+        <div id="usluge" class="container section">
             <h2 class="text-primary">USLUGE</h2>
             <hr />
             <div class="text-uppercase" style="font-size:16px">
@@ -148,13 +157,13 @@
                 </div>
             </div>
         </div>
-        <div id="section2" class="container section slideanim">
+        <div id="cijene" class="container section slideanim">
             <h2 class="text-primary">CJENIK USLUGA</h2>
             <div class="tavle-responsive text-left">
                 <table class="table table-condensed">
                     <tr>
                         <th>USLUGA</th>
-                        <th>CIJENA</th>
+                        <th style="min-width:100px">CIJENA</th>
                     </tr>
                     <tr>
                         <th colspan="2" class="text-primary pt-4">MASAŽA</th>
@@ -177,7 +186,7 @@
                     </tr>
                     <tr>
                         <td>SPORTSKA (CIJELO TIJELO) 60 MIN</td>
-                        <td>180,00 kn</td>
+                        <td>200,00 kn</td>
                     </tr>
                     <tr>
                         <td>TERAPIJSKA (CIJELO TIJELO) 60 MIN</td>
@@ -209,7 +218,7 @@
                     </tr>
                     <tr>
                         <td>RELAX MASSAGE 60 MIN</td>
-                        <td>170,00 kn</td>
+                        <td>180,00 kn</td>
                     </tr>
                     <tr>
                         <td>SHIATSU TRETMAN 75 MIN</td>
@@ -223,17 +232,21 @@
                         <td>1000,00 kn</td>
                     </tr>
                     <tr>
+                        <td>MADEROTERAPIJA 10X60 MIN</td>
+                        <td>6000,00 kn</td>
+                    </tr>
+                    <!--<tr>
                         <td>CUPPING THERAPY 5X30 MIN</td>
                         <td>500,00 kn</td>
-                    </tr>
+                    </tr>-->
                     <!--<tr>
                         <td>KLASIČNA MASAŽA 4X30 MIN</td>
                         <td>300,00 kn</td>
                     </tr>-->
-                    <tr>
+                    <!--<tr>
                         <td>4X50 MIN-MIX</td>
                         <td>600,00 kn</td>
-                    </tr>
+                    </tr>-->
                     <tr>
                         <th colspan="2" class="text-primary pt-4">NJEGA RUKU I STOPALA</th>
                     </tr>
@@ -256,28 +269,13 @@
                 </table>
             </div>
         </div>
-        <div id="section3" class="container section slideanim">
+        <div id="rezervacija" class="container section slideanim">
             <div class="row justify-content-center">
                 <div class="col-lg-6">
                     <ng-include src="'./assets/partials/reservation.html'"></ng-include>
                 </div>
             </div>
         </div>
-        <!--<div id="section4" class="container section slideanim">
-            <h2 class="text-primary">RADNO VRIJEME</h2>
-            <hr />
-            <div class="row text-center">
-                <div class="col-sm-4">
-                    PON, PET: 9-17
-                </div>
-                <div class="col-sm-4">
-                    UTO, SRI, ČET: 12-20
-                </div>
-                <div class="col-sm-4">
-                    SUB: Po dogovoru
-                </div>
-            </div>
-        </div>-->
         <div id="section4" class="container section slideanim">
             <h2 class="text-primary">POKLON BON</h2>
             <hr />
@@ -286,13 +284,6 @@
                 <img src="assets/img/poklon-bon.jpg" class="rounded-circle img-thumbnail shadow" style="width:300px" alt="studio tanya" />
             </div>
         </div>
-        <!--<div id="section5" class="container section slideanim">
-            <h2 class="text-primary">O NAMA</h2>
-            <hr />
-            <div>
-                <img src="assets/img/logo.png" class="rounded-circle img-thumbnail shadow" style="width:300px" alt="studio tanya" />
-            </div>
-        </div>-->
         <div class="container section slideanim">
             <h2 class="text-primary">PRATITE NAS NA DRUŠTVENIM MREŽAMA</h2>
             <hr />
@@ -302,7 +293,7 @@
             </div>
         </div>
     </div>
-    <div id="section5" class="container-fluid section text-white p-5 slideanim bg-primary">
+    <div id="kontakt" class="container-fluid section text-white p-5 slideanim bg-primary">
         <div ng-controller="contactCtrl" class="row">
                 <div class="col-lg-3 p-3">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2805.249735382006!2d14.473768815816225!3d45.323579250836055!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4764a04ccd3fef9f%3A0xe631ba92ca0a1f2!2sUl.%20dr.%20Zdravka%20Ku%C4%8Di%C4%87a%207a%2C%2051000%2C%20Rijeka!5e0!3m2!1shr!2shr!4v1593719743688!5m2!1shr!2shr" frameborder="0" style="border:0; width:100%; height:100%" allowfullscreen=""></iframe>
@@ -420,6 +411,18 @@
             text: "Podijeli sa: ",
             url: "https://www.studiotanya.hr/"
         });
+
+        function openNav() {
+            if (document.getElementById("mySidenav").style.width == "250px") {
+                document.getElementById("mySidenav").style.width = "0";
+            } else {
+                document.getElementById("mySidenav").style.width = "250px";
+            }
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
     </script>
 </body>
 </html>
