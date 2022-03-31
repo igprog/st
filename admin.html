@@ -62,12 +62,18 @@
             </div>
         </div>
         <div ng-if="d.isLogin">
-            <div class="card">
-                <h4 class="card-header">Upiti</h4>
-                <div class="card-body">
+            <div>
+                <ul class="nav nav-tabs">
+                    <li class="nav-item" ng-class="activeTab==='inquery'?'nav-link active':'nav-link'"><a href="" ng-click="toggleTpl('inquery')"><i class="fa fa-phone"></i> Upiti</a></li>
+                    <li class="nav-item" ng-class="activeTab==='calendar'?'nav-link active':'nav-link'"><a href="" ng-click="toggleTpl('calendar')"><i class="fa fa-calendar"></i> Kalendar</a></li>
+                    <li class="nav-item" ng-class="activeTab==='services'?'nav-link active':'nav-link'"><a href="" ng-click="toggleTpl('services')"><i class="fas fa-hand-holding-usd"></i> Usluge</a></li>
+                </ul>
+            </div>
+            <div class="p-2 pt-4 pb-5">
+                <div ng-if="activeTab==='inquery'" class="">
                     <loading-directive loadingtitle="'Učitavanje...'" value="d.loading" size="5"></loading-directive>
-                    <div ng-if="d.inquiries.length>0&&!d.loading" class="table-responsive" style="max-height:250px">
-                        <table class="table table-condensed">
+                    <div ng-if="d.inquiries.length>0&&!d.loading" class="table-responsive" style="max-height:500px">
+                        <table class="table table-sm">
                             <tr>
                                 <th>R. br.</th>
                                 <th>Usluga</th>
@@ -91,11 +97,52 @@
                         </table>
                     </div>
                 </div>
-            </div>
-            <div class="card mt-3">
-                <h4 class="card-header">Kalendar Rezervacija</h4>
-                <div class="card-body" ng-controller="schedulerCtrl">
-                    <div id="myScheduler"></div>
+                <div ng-if="activeTab==='calendar'">
+                    <div class="card-body" ng-controller="schedulerCtrl">
+                        <div id="myScheduler"></div>
+                    </div>
+                </div>
+                <div ng-if="activeTab==='services'">
+                    <div class="text-right py-2">
+                        <button class="btn btn-outline-success" ng-click="saveServices(d.services)"><i class="fa fa-save"></i> Spremi</button>
+                    </div>
+                    <div ng-repeat="x in d.services track by $index">
+                        <label class="font-weight-bold">Grupa usluga:</label>
+                        <div class="input-group flex-nowrap">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-outline-danger" title="Briši grupu" ng-click="removeServiceGroup(d.services, $index)"><i class="fa fa-times-circle"></i></button>
+                            </div>
+                            <input ng-model="x.serviceGroup" class="form-control" />
+                        </div>
+                        <div class="table-responsive px-5">
+                            <table class="table table-sm table-borderless">
+                                <tr>
+                                    <th style="width:auto">Usluga</th>
+                                    <th style="width:200px">Cijena</th>
+                                    <th style="width:100px">Valuta</th>
+                                </tr>
+                                <tr ng-repeat="y in x.services track by $index">
+                                    <td>
+                                        <div class="input-group flex-nowrap">
+                                            <div class="input-group-prepend">
+                                                <button class="btn btn-outline-danger" title="Briši" ng-click="removeService(x.services, $index)"><i class="fa fa-times-circle"></i></button>
+                                            </div>
+                                            <input ng-model="y.title" class="form-control" />
+                                        </div>
+
+                                    </td>
+                                    <td><input ng-model="y.price" class="form-control" /></td>
+                                    <td><input ng-model="y.currency" class="form-control" /></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3"><button class="btn btn-outline-primary" ng-click="addNewService(x.services)"><i class="fa fa-plus"></i> Dodaj novu uslugu</button></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="btn btn-outline-primary" ng-click="addNewServiceGroup(d.services)"><i class="fa fa-plus"></i> Dodaj novu grupu usluga</button>
+                    </div>
                 </div>
             </div>
         </div>

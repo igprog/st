@@ -1,6 +1,6 @@
 ﻿/*!
 app.js
-(c) 2019 IG PROG, www.igprog.hr
+(c) 2019-2022 IG PROG, www.igprog.hr
 */
 angular.module('app', ['ngStorage'])
 .config(['$httpProvider', ($httpProvider) => {
@@ -40,7 +40,7 @@ angular.module('app', ['ngStorage'])
     }
 }])
 
-.controller('appCtrl', ['$scope', '$http', '$rootScope', function ($scope, $http, $rootScope) {
+.controller('appCtrl', ['$scope', '$http', '$rootScope', 'f', function ($scope, $http, $rootScope, f) {
     var getConfig = function () {
         $http.get('../config/config.json')
           .then(function (response) {
@@ -53,6 +53,14 @@ angular.module('app', ['ngStorage'])
     $scope.setService = (x) => {
         $rootScope.service = x;
     }
+
+    var loadServices = () => {
+        f.post('Services', 'Load', {}).then((d) => {
+            $scope.services = d;
+        });
+    }
+    loadServices();
+
 }])
 
 .controller('reservationCtrl', ['$scope', '$http', '$rootScope', 'f', function ($scope, $http, $rootScope, f) {
@@ -116,6 +124,8 @@ angular.module('app', ['ngStorage'])
         },
         isLogin: isLogin,
         inquiries: null,
+        services: null,
+        initServise: null,
         loading: false
     }
     $scope.d = data;
@@ -126,10 +136,6 @@ angular.module('app', ['ngStorage'])
             $scope.d.inquiries = d;
             $scope.d.loading = false;
         });
-    }
-
-    if (isLogin) {
-        loadInquiries();
     }
 
     $scope.login = (x) => {
@@ -153,6 +159,68 @@ angular.module('app', ['ngStorage'])
             $scope.d.inquiries = d;
             $scope.d.loading = false;
         });
+    }
+
+    $scope.activeTab = 'inquery';
+    $scope.toggleTpl = (x) => {
+        $scope.activeTab = x;
+        switch (x) {
+            case 'inquery':
+                loadInquiries();
+                break;
+            case 'services':
+                loadServices();
+                break;
+            default:
+        }
+    }
+
+    var loadServices = () => {
+        $scope.d.loading = true;
+        f.post('Services', 'Load', {}).then((d) => {
+            $scope.d.services = d;
+            $scope.d.loading = false;
+        });
+    }
+
+    $scope.saveServices = (x) => {
+        $scope.d.loading = true;
+        f.post('Services', 'Save', { services: x }).then((d) => {
+            $scope.d.loading = false;
+            alert(d.msg);
+        });
+    }
+
+    var InitServices = () => {
+        f.post('Services', 'InitService', {}).then((d) => {
+            $scope.d.initServise = d;
+        });
+    }
+    InitServices();
+
+    $scope.addNewServiceGroup = (services) => {
+        var newServiceGroup = {
+            serviceGroup: null,
+            services: [angular.copy($scope.d.initServise)]
+        }
+        services.push(newServiceGroup);
+    }
+
+    $scope.removeServiceGroup = function (services, idx) {
+        services.splice(idx, 1);
+    }
+
+    $scope.addNewService = (services) => {
+        services.push(angular.copy($scope.d.initServise));
+    }
+
+    $scope.removeService = function (services, idx) {
+        services.splice(idx, 1);
+    }
+
+    if (isLogin) {
+        loadInquiries();
+        loadServices();
     }
 
 }])
