@@ -276,7 +276,7 @@ angular.module('app', ['ngStorage'])
             $rootScope.events = d;
             $timeout(function () {
                 showScheduler();
-            }, 200);
+            }, 1000);
         });
     };
     $scope.getSchedulerEvents(null);

@@ -65,7 +65,7 @@
             <div>
                 <ul class="nav nav-tabs">
                     <li class="nav-item" ng-class="activeTab==='inquery'?'nav-link active':'nav-link'"><a href="" ng-click="toggleTpl('inquery')"><i class="fa fa-phone"></i> Upiti</a></li>
-                    <li class="nav-item" ng-class="activeTab==='calendar'?'nav-link active':'nav-link'"><a href="" ng-click="toggleTpl('calendar')"><i class="fa fa-calendar"></i> Kalendar</a></li>
+                    <!--<li class="nav-item" ng-class="activeTab==='calendar'?'nav-link active':'nav-link'"><a href="" ng-click="toggleTpl('calendar')"><i class="fa fa-calendar"></i> Kalendar</a></li>-->
                     <li class="nav-item" ng-class="activeTab==='services'?'nav-link active':'nav-link'"><a href="" ng-click="toggleTpl('services')"><i class="fas fa-hand-holding-usd"></i> Usluge</a></li>
                 </ul>
             </div>
@@ -88,10 +88,10 @@
                                 <td>{{x.id}}</td>
                                 <td>{{x.service}}</td>
                                 <td>{{x.name}}</td>
-                                <td>{{x.date}}</td>
+                                <td class="text-nowrap">{{x.date}}</td>
                                 <td>{{x.time}}</td>
-                                <td><a href="tel:{{x.phone}}" title="telefon" class="text-success"><i class="fa fa-phone"></i> {{x.phone}}</a></td>
-                                <td><a href="mailto:{{x.email}}" title="email" class="text-primary"><i class="far fa-envelope"></i> {{x.email}}</a></td>
+                                <td class="text-nowrap"><a href="tel:{{x.phone}}" title="telefon" class="text-success"><i class="fa fa-phone"></i> {{x.phone}}</a></td>
+                                <td class="text-nowrap"><a href="mailto:{{x.email}}" title="email" class="text-primary"><i class="far fa-envelope"></i> {{x.email}}</a></td>
                                 <td><input ng-model="x.confirmed" type="checkbox" value="" ng-click="updateInquery(x)"></td>
                             </tr>
                         </table>
