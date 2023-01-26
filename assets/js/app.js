@@ -1,8 +1,8 @@
 ﻿/*!
 app.js
-(c) 2019-2022 IG PROG, www.igprog.hr
+(c) 2019-2023 IG PROG, www.igprog.hr
 */
-angular.module('app', ['ngStorage'])
+angular.module('app', ['ngStorage', 'daypilot'])
 .config(['$httpProvider', ($httpProvider) => {
     //*******************disable catche**********************
     if (!$httpProvider.defaults.headers.get) {
@@ -225,118 +225,256 @@ angular.module('app', ['ngStorage'])
 
 }])
 
+//.controller("schedulerCtrl_old", ['$scope', '$http', '$rootScope', '$timeout', 'f', function ($scope, $http, $rootScope, $timeout, f) {
+//    var service = 'Scheduler';
+//    $scope.room = 0;
+
+//    var showScheduler = function () {
+//        YUI().use('aui-scheduler', function (Y) {
+//            var agendaView = new Y.SchedulerAgendaView();
+//            var dayView = new Y.SchedulerDayView();
+//            var weekView = new Y.SchedulerWeekView();
+//            var monthView = new Y.SchedulerMonthView();
+//            var eventRecorder = new Y.SchedulerEventRecorder({
+//                on: {
+//                    save: function (event) {
+//                        addEvent(this.getTemplateData(), event);
+//                    },
+//                    edit: function (event) {
+//                        addEvent(this.getTemplateData(), event);
+//                    },
+//                    delete: function (event) {
+//                        removeEvent(this.getTemplateData(), event);
+//                    }
+//                }
+//            });
+
+//            new Y.Scheduler({
+//                activeView: weekView,
+//                boundingBox: '#myScheduler',
+//                date: new Date(),
+//                eventRecorder: eventRecorder,
+//                items: $rootScope.events,
+//                render: true,
+//                views: [dayView, weekView, monthView, agendaView],
+//                strings: {
+//                    agenda: 'Dnevni red',
+//                    day: 'Dan',
+//                    month: 'Mjesec',
+//                    table: 'Tablica',
+//                    today: 'Danas',
+//                    week: 'Tjedan',
+//                    year: 'Godina'
+//                },
+//            }
+//            );
+//        });
+//    }
+
+//    $scope.getSchedulerEvents = function (uid) {
+//        f.post(service, 'GetSchedulerEvents', { room: $scope.room, uid: uid }).then((d) => {
+//            $rootScope.events = d;
+//            $timeout(function () {
+//                showScheduler();
+//            }, 1000);
+//        });
+//    };
+//    $scope.getSchedulerEvents(null);
+
+//    var addEvent = function (x, event) {
+//        $rootScope.events.push({
+//            room: $scope.room,
+//            clientId: null,
+//            content: event.details[0].newSchedulerEvent.changed.content,
+//            endDate: x.endDate,
+//            startDate: x.startDate,
+//            userId: null
+//        });
+
+//        var eventObj = {};
+//        eventObj.room = $scope.room;
+//        eventObj.clientId = null;
+//        eventObj.content = event.details[0].newSchedulerEvent.changed.content == null ? x.content : event.details[0].newSchedulerEvent.changed.content;
+//        eventObj.endDate = x.endDate;
+//        eventObj.startDate = x.startDate;
+//        eventObj.userId = null;
+
+//        var eventObj_old = {};
+//        eventObj_old.room = $scope.room;
+//        eventObj_old.clientId = null;
+//        eventObj_old.content = angular.isUndefined(event.details[0].newSchedulerEvent.lastChange.content) ? x.content : event.details[0].newSchedulerEvent.lastChange.content.prevVal;
+//        eventObj_old.endDate = angular.isUndefined(event.details[0].newSchedulerEvent.lastChange.endDate) ? x.endDate : Date.parse(event.details[0].newSchedulerEvent.lastChange.endDate.prevVal);
+//        eventObj_old.startDate = angular.isUndefined(event.details[0].newSchedulerEvent.lastChange.startDate) ? x.startDate : Date.parse(event.details[0].newSchedulerEvent.lastChange.startDate.prevVal);
+//        eventObj_old.userId = null;
+//        remove(eventObj_old);
+
+//        $timeout(function () {
+//            save(eventObj);
+//        }, 500);
+//    }
+
+//    var save = function (x) {
+//        f.post(service, 'Save', { userGroupId: null, userId: null, x: x }).then((d) => {
+//            getAppointmentsCountByUserId();
+//        });
+//    }
+
+//    var removeEvent = function (x, event) {
+//        var eventObj = {};
+//        eventObj.room = $scope.room;
+//        eventObj.clientId = null;
+//        eventObj.content = x.content;
+//        eventObj.endDate = x.endDate;
+//        eventObj.startDate = x.startDate;
+//        eventObj.userId = null;
+//        remove(eventObj);
+//    }
+
+//    var remove = function (x) {
+//        f.post(service, 'Delete', { userGroupId: null, userId: null, x: x }).then((d) => {
+//            getAppointmentsCountByUserId();
+//        });
+//    }
+
+//}])
+
 .controller("schedulerCtrl", ['$scope', '$http', '$rootScope', '$timeout', 'f', function ($scope, $http, $rootScope, $timeout, f) {
     var service = 'Scheduler';
-    $scope.room = 0;
+    $scope.events = [];
 
-    var showScheduler = function () {
-        YUI().use('aui-scheduler', function (Y) {
-            var agendaView = new Y.SchedulerAgendaView();
-            var dayView = new Y.SchedulerDayView();
-            var weekView = new Y.SchedulerWeekView();
-            var monthView = new Y.SchedulerMonthView();
-            var eventRecorder = new Y.SchedulerEventRecorder({
-                on: {
-                    save: function (event) {
-                        addEvent(this.getTemplateData(), event);
-                    },
-                    edit: function (event) {
-                        addEvent(this.getTemplateData(), event);
-                    },
-                    delete: function (event) {
-                        removeEvent(this.getTemplateData(), event);
+    function loadEvents() {
+        // using $timeout to make sure all changes are applied before reading visibleStart() and visibleEnd()
+        $timeout(function () {
+            f.post(service, 'Load', { userGroupId: null, userId: null }).then((d) => {
+                $scope.events = [];
+                angular.forEach(d, function (value, key) {
+                    var event = {
+                        id: value.id,
+                        text: value.content,
+                        start: new DayPilot.Date(value.startTime),
+                        end: new DayPilot.Date(value.endTime),
+                        barColor: new Date(value.startTime) > new Date() ? "#ff6b6b" : "#cccccc"   // *main color*
                     }
-                }
+                    $scope.events.push(event);
+                });
+
+            });
+        });
+    }
+    loadEvents();
+
+    function save(x) {
+        if (x.text.length > 200) {
+            alert('Maksimalni broj znakova ja 200');
+            loadEvents();
+            return;
+        }
+        var event = {
+            id: x.id,
+            room: 0,
+            clientId: null,
+            content: x.text,
+            startTime: x.start.value,
+            endTime: x.end.value,
+            userId: null,
+        };
+
+        f.post(service, 'Save', { userGroupId: null, userId: null, x: event }).then((d) => {
+            // alert(d);
+            loadEvents();
+        });
+    }
+
+    var isDelete = false;
+
+    $scope.dpConfig = {
+        visible: true,
+        viewType: "Week",
+        eventDeleteHandling: "Update",
+        onEventClick: function (args) {
+            if (isDelete) {
+                isDelete = false;
+                return;
+            }
+
+            var event = prompt("Opis:", args.e.text());
+            if (event === null) return;
+
+            var idx = $scope.events.findIndex(a => a.id === args.e.data.id);
+
+            $timeout(function () {
+                $scope.events[idx].text = event;
+                save($scope.events[idx]);
             });
 
-            new Y.Scheduler({
-                activeView: weekView,
-                boundingBox: '#myScheduler',
-                date: new Date(),
-                eventRecorder: eventRecorder,
-                items: $rootScope.events,
-                render: true,
-                views: [dayView, weekView, monthView, agendaView],
-                strings: {
-                    agenda: 'Dnevni red',
-                    day: 'Dan',
-                    month: 'Mjesec',
-                    table: 'Tablica',
-                    today: 'Danas',
-                    week: 'Tjedan',
-                    year: 'Godina'
-                },
-            }
-            );
-        });
-    }
+        },
+        onTimeRangeSelected: function (args) {
+            var event = prompt("Opis:", "");
+            if (!event) return;
 
-    $scope.getSchedulerEvents = function (uid) {
-        f.post(service, 'GetSchedulerEvents', { room: $scope.room, uid: uid }).then((d) => {
-            $rootScope.events = d;
+            var e = {
+                id: DayPilot.guid(),
+                text: event,
+                start: args.start,
+                end: args.end
+            };
+
+            args.control.clearSelection();
+
             $timeout(function () {
-                showScheduler();
-            }, 1000);
-        });
+                $scope.events.push(e);
+                save(e);
+            });
+        },
+        onEventMoved: function(args) {
+            var idx = $scope.events.findIndex(a => a.id === args.e.data.id);
+            $timeout(function () {
+                save($scope.events[idx]);
+            });
+        },
+        onBeforeEventRender: function (args) {
+            args.data.areas = [
+                {
+                    height: 17,
+                    width: 17,
+                    top: 3,
+                    right: 2,
+                    visibility: "Hover",
+                    cssClass: "event_action_delete",
+                    onClick: function (args) {
+                        debugger;
+                        isDelete = true;
+                        if (!confirm("Želite li izbrisati ovaj termin?")) {
+                            args.preventDefault();
+                            return;
+                        }
+
+                        var idx = $scope.events.findIndex(a => a.id === args.source.data.id);
+
+                        $timeout(function () {
+                            f.post(service, 'Delete', { userGroupId: null, userId: null, id: args.source.data.id }).then((d) => {
+                                $scope.events.splice(idx, 1);
+                                loadEvents();
+                            });
+                        });
+                    }
+                },
+            ];
+        }
     };
-    $scope.getSchedulerEvents(null);
 
-    var addEvent = function (x, event) {
-        $rootScope.events.push({
-            room: $scope.room,
-            clientId: null,
-            content: event.details[0].newSchedulerEvent.changed.content,
-            endDate: x.endDate,
-            startDate: x.startDate,
-            userId: null
-        });
-
-        var eventObj = {};
-        eventObj.room = $scope.room;
-        eventObj.clientId = null;
-        eventObj.content = event.details[0].newSchedulerEvent.changed.content == null ? x.content : event.details[0].newSchedulerEvent.changed.content;
-        eventObj.endDate = x.endDate;
-        eventObj.startDate = x.startDate;
-        eventObj.userId = null;
-
-        var eventObj_old = {};
-        eventObj_old.room = $scope.room;
-        eventObj_old.clientId = null;
-        eventObj_old.content = angular.isUndefined(event.details[0].newSchedulerEvent.lastChange.content) ? x.content : event.details[0].newSchedulerEvent.lastChange.content.prevVal;
-        eventObj_old.endDate = angular.isUndefined(event.details[0].newSchedulerEvent.lastChange.endDate) ? x.endDate : Date.parse(event.details[0].newSchedulerEvent.lastChange.endDate.prevVal);
-        eventObj_old.startDate = angular.isUndefined(event.details[0].newSchedulerEvent.lastChange.startDate) ? x.startDate : Date.parse(event.details[0].newSchedulerEvent.lastChange.startDate.prevVal);
-        eventObj_old.userId = null;
-        remove(eventObj_old);
-
-        $timeout(function () {
-            save(eventObj);
-        }, 500);
-    }
-
-    var save = function (x) {
-        f.post(service, 'Save', { userGroupId: null, userId: null, x: x }).then((d) => {
-            getAppointmentsCountByUserId();
-        });
-    }
-
-    var removeEvent = function (x, event) {
-        var eventObj = {};
-        eventObj.room = $scope.room;
-        eventObj.clientId = null;
-        eventObj.content = x.content;
-        eventObj.endDate = x.endDate;
-        eventObj.startDate = x.startDate;
-        eventObj.userId = null;
-        remove(eventObj);
-    }
-
-    var remove = function (x) {
-        f.post(service, 'Delete', { userGroupId: null, userId: null, x: x }).then((d) => {
-            getAppointmentsCountByUserId();
-        });
-    }
+    $scope.navigatorConfig = {
+        selectMode: "day",
+        showMonths: 3,
+        skipMonths: 3,
+        onTimeRangeSelected: function (args) {
+            $scope.dpConfig.startDate = args.day;
+            loadEvents();
+        }
+    };
 
 }])
+
 
 /********** Directives **********/
 .directive('reservationDirective', () => {

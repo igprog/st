@@ -15,10 +15,12 @@
     <script src="assets/js/vendor/angular.min.js"></script>
     <script src="assets/js/vendor/angular-animate.min.js"></script>
     <script src="assets/js/vendor/angular-aria.min.js"></script>
-    <script src="assets/js/vendor/aui-min.js"></script>
+    <!--<script src="assets/js/vendor/aui-min.js"></script>-->
+    <script src="assets/js/vendor/daypilot-all.min.js"></script>
     <script src="assets/js/vendor/moment.js"></script>
-    <script src="assets/js/vendor/ui-scheduler-event-recorder.js"></script>
+    <!--<script src="assets/js/vendor/ui-scheduler-event-recorder.js"></script>-->
     <script src="assets/js/vendor/ngStorage.min.js"></script>
+
     <link href='https://fonts.googleapis.com/css?family=Encode Sans Expanded' rel='stylesheet'>
 </head>
 <body id="home" ng-app="app" ng-controller="adminCtrl" data-spy="scroll" data-target=".navbar" data-offset="60" ng-cloak>
@@ -66,6 +68,7 @@
                 <ul class="nav nav-tabs">
                     <li class="nav-item" ng-class="activeTab==='inquery'?'nav-link active':'nav-link'"><a href="" ng-click="toggleTpl('inquery')"><i class="fa fa-phone"></i> Upiti</a></li>
                     <!--<li class="nav-item" ng-class="activeTab==='calendar'?'nav-link active':'nav-link'"><a href="" ng-click="toggleTpl('calendar')"><i class="fa fa-calendar"></i> Kalendar</a></li>-->
+                    <li class="nav-item" ng-class="activeTab==='calendar'?'nav-link active':'nav-link'"><a href="" ng-click="toggleTpl('calendar')"><i class="fa fa-calendar"></i> Kalendar</a></li>
                     <li class="nav-item" ng-class="activeTab==='services'?'nav-link active':'nav-link'"><a href="" ng-click="toggleTpl('services')"><i class="fas fa-hand-holding-usd"></i> Usluge</a></li>
                 </ul>
             </div>
@@ -98,8 +101,28 @@
                     </div>
                 </div>
                 <div ng-if="activeTab==='calendar'">
-                    <div class="card-body" ng-controller="schedulerCtrl">
+                    <!--<div class="card-body" ng-controller="schedulerCtrl_old">
                         <div id="myScheduler"></div>
+                    </div>-->
+                    <div class="card">
+                        <div class="card-body" ng-controller="schedulerCtrl">
+                            <div id="dpNavigatorSidenav" class="sidenav_dp_navigator shadow">
+                                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                                <div class="pl-3">
+                                    <daypilot-navigator id="navi" daypilot-config="navigatorConfig"></daypilot-navigator>
+                                </div>
+                            </div>
+                            <a href="" onclick="openNav()">&#9776; Kalendar</a>
+                            <div>
+                                <daypilot-calendar id="dp" daypilot-config="dpConfig" daypilot-events="events"></daypilot-calendar>
+                            </div>
+
+                            <!--<div>
+                                Events:
+                                <pre>{{events | json}}</pre>
+                                <pre>{{events_ | json}}</pre>
+                            </div>-->
+                        </div>
                     </div>
                 </div>
                 <div ng-if="activeTab==='services'">
@@ -148,5 +171,16 @@
         </div>
     </div>
     <script src="assets/js/app.js"></script>
+
+    <script>
+        function openNav() {
+            document.getElementById("dpNavigatorSidenav").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("dpNavigatorSidenav").style.width = "0";
+        }
+    </script>
+
 </body>
 </html>
