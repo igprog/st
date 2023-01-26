@@ -72,8 +72,8 @@ public class Scheduler : WebService {
         try {
             using (SQLiteConnection connection = new SQLiteConnection("Data Source=" + db.GetDataBasePath(dataBase))) {
                 connection.Open();
-                // string sql = "SELECT rowid, room, clientId, content, startDate, endDate, userId FROM scheduler";
-                string sql = "SELECT id, room, clientId, content, startTime, endtime, userId FROM scheduler WHERE id IS NOT NULL";
+                string sql = @"SELECT id, room, clientId, content, startTime, endtime, userId FROM scheduler
+                WHERE id IS NOT NULL and(date(startTime) > date(startTime, '-30 days') and date(startTime) < date(startTime, '+30 days'))";
                 using (SQLiteCommand command = new SQLiteCommand(sql, connection)) {
                     using (SQLiteDataReader reader = command.ExecuteReader()) {
                         xx = new List<Event>();
@@ -103,25 +103,6 @@ public class Scheduler : WebService {
             return JsonConvert.SerializeObject(e.Message, Formatting.None);
         }
     }
-
-    //private void RepairColumns() {
-    //    try {
-    //        if (!db.CheckIfColumnExists("scheduler", "id")) {
-    //            string tempTable = string.Format("sqlitestudio_temp_table_{0}", Guid.NewGuid().ToString());
-    //            string sql = string.Format(@"ALTER TABLE scheduler RENAME TO {0};
-    //                    CREATE TABLE scheduler (id VARCHAR (50) PRIMARY KEY, room INTEGER, clientId VARCHAR (50), content NVARCHAR (200), startTime VARCHAR (50), endTime VARCHAR (50), userId VARCHAR (50));
-    //                    INSERT INTO scheduler (room, clientId, content, startTime, endTime, userId) SELECT room, clientId, content, startDate, endDate, userId FROM {0};
-    //                    DROP TABLE {0};", tempTable);
-    //            using (var connection = new SQLiteConnection("Data Source=" + db.GetDataBasePath(dataBase))) {
-    //                connection.Open();
-    //                using (var command = new SQLiteCommand(sql, connection)) {
-    //                    command.ExecuteNonQuery();
-    //                }
-    //            }
-    //        }
-    //    } catch (Exception e) {
-    //    }
-    //}
 
     [WebMethod]
     public string Save(string userGroupId, string userId, Event x) {

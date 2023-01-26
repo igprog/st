@@ -442,7 +442,6 @@ angular.module('app', ['ngStorage', 'daypilot'])
                     visibility: "Hover",
                     cssClass: "event_action_delete",
                     onClick: function (args) {
-                        debugger;
                         isDelete = true;
                         if (!confirm("Želite li izbrisati ovaj termin?")) {
                             args.preventDefault();
