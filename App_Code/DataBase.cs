@@ -29,7 +29,7 @@ public class DataBase {
 
     public void Scheduler(string path) {
         string sql = @"CREATE TABLE IF NOT EXISTS scheduler
-                (id VARCHAR (50) PRIMARY KEY,
+                (id VARCHAR(50) PRIMARY KEY,
                 room INTEGER,
                 clientId VARCHAR(50),
                 content NVARCHAR(200),

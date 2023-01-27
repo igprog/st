@@ -429,7 +429,10 @@ angular.module('app', ['ngStorage', 'daypilot'])
         onEventMoved: function(args) {
             var idx = $scope.events.findIndex(a => a.id === args.e.data.id);
             $timeout(function () {
-                save($scope.events[idx]);
+                var event = $scope.events[idx];
+                event.start = args.newStart;
+                event.end = args.newEnd;
+                save(event);
             });
         },
         onBeforeEventRender: function (args) {

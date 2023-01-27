@@ -72,7 +72,7 @@ public class Scheduler : WebService {
         try {
             using (SQLiteConnection connection = new SQLiteConnection("Data Source=" + db.GetDataBasePath(dataBase))) {
                 connection.Open();
-                string sql = @"SELECT id, room, clientId, content, startTime, endtime, userId FROM scheduler
+                string sql = @"SELECT id, room, clientId, content, startTime, endTime, userId FROM scheduler
                 WHERE id IS NOT NULL and(date(startTime) > date(startTime, '-30 days') and date(startTime) < date(startTime, '+30 days'))";
                 using (SQLiteCommand command = new SQLiteCommand(sql, connection)) {
                     using (SQLiteDataReader reader = command.ExecuteReader()) {
