@@ -65,11 +65,11 @@
         </div>
         <div ng-if="d.isLogin">
             <div>
-                <ul class="nav nav-tabs">
-                    <li class="nav-item" ng-class="activeTab==='inquery'?'nav-link active':'nav-link'"><a href="" ng-click="toggleTpl('inquery')"><i class="fa fa-phone"></i> Upiti</a></li>
-                    <!--<li class="nav-item" ng-class="activeTab==='calendar'?'nav-link active':'nav-link'"><a href="" ng-click="toggleTpl('calendar')"><i class="fa fa-calendar"></i> Kalendar</a></li>-->
-                    <li class="nav-item" ng-class="activeTab==='calendar'?'nav-link active':'nav-link'"><a href="" ng-click="toggleTpl('calendar')"><i class="fa fa-calendar"></i> Kalendar</a></li>
-                    <li class="nav-item" ng-class="activeTab==='services'?'nav-link active':'nav-link'"><a href="" ng-click="toggleTpl('services')"><i class="fas fa-hand-holding-usd"></i> Usluge</a></li>
+                <ul class="nav nav-tabs cursor">
+                    <li class="nav-item nav-link {{activeTab==='inquery'?'active':''}}" ng-click="toggleTpl('inquery')"><a href="" ><i class="fa fa-phone"></i> Upiti</a></li>
+                    <li class="nav-item nav-link {{activeTab==='calendar'?'active':''}}" ng-click="toggleTpl('calendar')"><a href=""><i class="fa fa-calendar"></i> Kalendar</a></li>
+                    <li class="nav-item nav-link {{activeTab==='services'?'active':''}}" ng-click="toggleTpl('services')"><a href="" ><i class="fas fa-hand-holding-usd"></i> Usluge</a></li>
+                    <li class="nav-item nav-link {{activeTab==='settings'?'active':''}}" ng-click="toggleTpl('settings')"><a href=""><i class="fa fa-cogs"></i> Postavke</a></li>
                 </ul>
             </div>
             <div class="p-2 pt-4 pb-5">
@@ -164,6 +164,68 @@
                     </div>
                     <div>
                         <button class="btn btn-outline-primary" ng-click="addNewServiceGroup(d.services)"><i class="fa fa-plus"></i> Dodaj novu grupu usluga</button>
+                    </div>
+                </div>
+                <div ng-if="activeTab==='settings'">
+                    <div class="text-right py-2">
+                        <button class="btn btn-outline-success" ng-click="saveSettings(d.settings)"><i class="fa fa-save"></i> Spremi</button>
+                    </div>
+                    <div class="card my-3">
+                        <div class="card-header">Informacije o firmi</div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Naziv:</label>
+                                <input ng-model="d.settings.company" type="text" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Adresa:</label>
+                                <input ng-model="d.settings.address" type="text" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>OIB:</label>
+                                <input ng-model="d.settings.pin" type="text" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Telefon:</label>
+                                <input ng-model="d.settings.phone" type="text" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>E-mail:</label>
+                                <input ng-model="d.settings.email" type="text" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card my-3">
+                        <div class="card-header">Radno vrijeme</div>
+                        <div class="card-body">
+                            <div class="row" ng-repeat="x in d.settings.workingTime">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label>Dani:</label>
+                                        <input ng-model="x.days" type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label>Vrijeme:</label>
+                                        <input ng-model="x.time" type="text" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card my-3">
+                        <div class="card-header">Društvene mreže</div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Facebook:</label>
+                                <input ng-model="d.settings.follow.facebook" type="text" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Instagram:</label>
+                                <input ng-model="d.settings.follow.instagram" type="text" class="form-control">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

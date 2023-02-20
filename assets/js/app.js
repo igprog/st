@@ -61,6 +61,13 @@ angular.module('app', ['ngStorage', 'daypilot'])
     }
     loadServices();
 
+    var loadServices = () => {
+        f.post('Settings', 'Load', {}).then((d) => {
+            $scope.settings = d;
+        });
+    }
+    loadServices();
+
 }])
 
 .controller('reservationCtrl', ['$scope', '$http', '$rootScope', 'f', function ($scope, $http, $rootScope, f) {
@@ -126,6 +133,7 @@ angular.module('app', ['ngStorage', 'daypilot'])
         inquiries: null,
         services: null,
         initServise: null,
+        settings: null,
         loading: false
     }
     $scope.d = data;
@@ -171,6 +179,9 @@ angular.module('app', ['ngStorage', 'daypilot'])
             case 'services':
                 loadServices();
                 break;
+            case 'settings':
+                loadSettings();
+                break;
             default:
         }
     }
@@ -197,6 +208,29 @@ angular.module('app', ['ngStorage', 'daypilot'])
         });
     }
     InitServices();
+
+    var InitSettings = () => {
+        f.post('Settings', 'Init', {}).then((d) => {
+            $scope.d.settings = d;
+        });
+    }
+    InitServices();
+
+    var loadSettings = () => {
+        $scope.d.loading = true;
+        f.post('Settings', 'Load', {}).then((d) => {
+            $scope.d.settings = d;
+            $scope.d.loading = false;
+        });
+    }
+
+    $scope.saveSettings = (x) => {
+        $scope.d.loading = true;
+        f.post('Settings', 'Save', { settings: x }).then((d) => {
+            $scope.d.loading = false;
+            alert(d.msg);
+        });
+    }
 
     $scope.addNewServiceGroup = (services) => {
         var newServiceGroup = {

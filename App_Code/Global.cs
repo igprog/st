@@ -40,5 +40,10 @@ namespace Igprog {
         public bool ReadB(SQLiteDataReader reader, int i) {
             return reader.GetValue(i) == DBNull.Value ? false : Convert.ToBoolean(reader.GetString(i));
         }
+
+        public class Response {
+            public bool isSuccess;
+            public string msg;
+        }
     }
 }

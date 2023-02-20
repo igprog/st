@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using System.Web.Services;
 using System.IO;
+using Igprog;
 
 /// <summary>
 /// Services
@@ -25,11 +26,6 @@ public class Services : WebService {
     public class ServiceGroup {
         public string serviceGroup;
         public List<NewService> services;
-    }
-
-    public class Response {
-        public bool isSuccess;
-        public string msg;
     }
 
     [WebMethod]
@@ -61,7 +57,7 @@ public class Services : WebService {
 
     [WebMethod]
     public string Save(List<ServiceGroup> services) {
-        Response response = new Response();
+        Global.Response response = new Global.Response();
         try {
             string path = "~/data/json";
             string filePath = string.Format("{0}/services.json", path);
